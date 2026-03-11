@@ -1,0 +1,84 @@
+body {
+    background-color: #f0f8ff;
+    /* Màu nền xanh nhạt */
+    color: #333333;
+    /* Màu chữ xám đen */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    /* Đưa toàn bộ chữ ra giữa */
+    margin-top: 100px;
+}
+
+h1 {
+    color: #0056b3;
+    /* Màu xanh đậm cho tiêu đề */
+    font-size: 3em;
+}
+
+p {
+    font-size: 1.2em;
+    color: #666666;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #0056b3;
+    margin-top: 30px;
+}
+
+/* Đường kẻ ngang ngăn cách */
+.divider {
+    width: 50%;
+    margin: 40px auto;
+    border: 1px solid #ddd;
+}
+
+/* Khung chứa các dự án (Xếp hàng ngang) */
+.project-container {
+    display: flex;
+    justify-content: center;
+    /* Đưa các thẻ ra giữa */
+    gap: 20px;
+    /* Khoảng cách giữa các thẻ */
+    flex-wrap: wrap;
+    /* Tự động xuống dòng nếu màn hình nhỏ */
+    padding: 20px;
+}
+
+/* Thiết kế từng Thẻ dự án */
+.project-card {
+    background-color: white;
+    border-radius: 10px;
+    /* Bo góc thẻ */
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng nhẹ cho thẻ */
+    text-align: left;
+    /* Chữ trong thẻ căn trái cho dễ đọc */
+    transition: transform 0.3s;
+    /* Chuẩn bị cho hiệu ứng di chuột */
+}
+
+/* Hiệu ứng: Khi rê chuột vào, thẻ sẽ tự động nổi lên trên */
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Trang trí nút "Xem chi tiết" */
+.project-card a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.project-card a:hover {
+    text-decoration: underline;
+    /* Gạch chân khi rê chuột vào chữ */
+}

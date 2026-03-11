@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio của Tôi</title>
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+</head>
+
+<body>
+    <img src="{% static 'base/avatar.jpg' %}" alt="Ảnh đại diện của tôi" class="avatar">
+
+    <h1>Xin chào, tôi là Phạm Hoàng Vũ 👋</h1>
+    <h2>Tôi là một Lập trình viên Web</h2>
+    <p>Chào mừng bạn đến với trang Portfolio cá nhân của tôi. Đây là nơi tôi lưu giữ những dự án mình đã làm bằng
+        Django.</p>
+
+    <hr class="divider">
+
+    <h2>Những dự án nổi bật</h2>
+
+    <div class="project-container">
+
+        <div class="project-card">
+            <h3>📝 Blog Cá Nhân</h3>
+            <p>Một trang web cho phép tôi viết và chia sẻ những bài học lập trình mỗi ngày.</p>
+            <a href="#">Xem chi tiết</a>
+        </div>
+
+        <div class="project-card">
+            <h3>✅ Ứng dụng To-do List</h3>
+            <p>Trang web quản lý công việc hàng ngày, có tính năng đánh dấu hoàn thành và xóa.</p>
+            <a href="#">Xem chi tiết</a>
+        </div>
+
+        <div class="project-card">
+            <h3>🛒 Web Bán Hàng Mini</h3>
+            <p>Dự án thương mại điện tử với tính năng giỏ hàng và thanh toán cơ bản.</p>
+            <a href="#">Xem chi tiết</a>
+        </div>
+
+    </div>
+</body>
+
+</html>
