@@ -15,13 +15,12 @@ interface Project {
 interface TechItem {
   label: string;
   icon: React.ReactNode;
-  color?: string;      // icon / text color
-  bg?: string;         // node background (default dark)
-  textColor?: string;  // override text color separately
-  fontSize?: string;   // override font size
+  color?: string;
+  bg?: string;
+  textColor?: string;
+  fontSize?: string;
 }
 
-/* ---- Motion variants ---- */
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
@@ -32,18 +31,16 @@ const staggerContainer: Variants = {
   visible: { transition: { staggerChildren: 0.12 } },
 }
 
-/* ---- Section wrapper with scroll reveal ---- */
-function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+function Section({ children, className = '', id }: { children: React.ReactNode; className?: string; id?: string }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px 0px' })
   return (
-    <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} className={className}>
+    <motion.div id={id} ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} className={className}>
       {children}
     </motion.div>
   )
 }
 
-/* ---- Orbital Ring — static, Math.sin/cos positioning ---- */
 function OrbitalRing({
   radius,
   items,
@@ -56,7 +53,6 @@ function OrbitalRing({
 
   return (
     <>
-      {/* Decorative ring border — separate div, never clips nodes */}
       <div style={{
         position: 'absolute',
         width: radius * 2,
@@ -70,11 +66,9 @@ function OrbitalRing({
         pointerEvents: 'none',
       }} />
 
-      {/* Node layer — positioned relative to orbit-scene center */}
       {items.map((tech, i) => {
         const angleDeg = i * angleStep - 90
         const angleRad = (angleDeg * Math.PI) / 180
-        // Positions relative to CENTER of the 600×600 orbit-scene (300, 300)
         const cx = 300 + radius * Math.cos(angleRad) - 40
         const cy = 300 + radius * Math.sin(angleRad) - 40
         const isHovered = hovered === tech.label
@@ -137,7 +131,6 @@ function OrbitalRing({
   )
 }
 
-/* ---- Tech data — ALL on one ring for clean layout ---- */
 const innerTechs: TechItem[] = [
   { label: 'JavaScript', icon: <i className="devicon-javascript-plain colored"></i> },
   { label: 'TypeScript', icon: <i className="devicon-typescript-plain colored"></i> },
@@ -155,9 +148,6 @@ const outerTechs: TechItem[] = [
   { label: 'Nitro', icon: <i className="devicon-nuxtjs-plain colored"></i> },
 ]
 
-/* ============================
-   THE MAIN APP COMPONENT
-   ============================ */
 function App() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loadingComplete, setLoadingComplete] = useState<boolean>(false)
@@ -193,11 +183,13 @@ function App() {
       <div className="bg-glow"></div>
 
       <nav className="top-nav">
-        <a href="#" className="logo">
-          phamhoangvu.com
+        <a href="#home" className="logo">
+          phamhoangvu
         </a>
-        <div className="nav-menu">
-          <i className="fas fa-bars"></i>
+        <div className="nav-links">
+          <a href="#home">Home</a>
+          <a href="#skills">Skill</a>
+          <a href="#projects">Project</a>
         </div>
       </nav>
 
@@ -217,8 +209,7 @@ function App() {
         </div>
       )}
 
-      {/* ====== HERO ====== */}
-      <header className="hero">
+      <header id="home" className="hero">
         <div className="hero-content">
           <motion.img
             src={`${import.meta.env.BASE_URL}avatar.jpg`}
@@ -231,7 +222,7 @@ function App() {
           />
 
           <motion.h1 className="hero-name" variants={fadeUp} initial="hidden" animate="visible">
-            Pham Hoang Vu
+            Pham Hoang <span style={{ color: '#ffffff' }}>Vu</span>
           </motion.h1>
 
           <motion.h2 className="hero-role" variants={fadeUp} initial="hidden" animate="visible"
@@ -249,8 +240,7 @@ function App() {
         </div>
       </header>
 
-      {/* ====== ORBITAL TECH ====== */}
-      <Section className="orbital-section">
+      <Section id="skills" className="orbital-section">
         <motion.div className="orbital-header" variants={staggerContainer}>
           <motion.h2 variants={fadeUp}>What technologies do I use?</motion.h2>
           <motion.p variants={fadeUp}>Mastering modern technologies to build quality products</motion.p>
@@ -271,7 +261,6 @@ function App() {
         </div>
       </Section>
 
-      {/* ====== PROJECTS  ====== */}
       <main id="projects" className="bento-section">
         <Section>
           <motion.div className="bento-header" variants={staggerContainer}>

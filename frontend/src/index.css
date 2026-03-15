@@ -7,12 +7,11 @@
 
   --text-primary: #ffffff;
   --text-secondary: #9ca3af;
-  /* gray-400 */
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
 
   --accent-gradient-start: #4f46e5;
-  /* indigo-600 */
   --accent-gradient-end: #7c3aed;
-  /* violet-600 */
 
   --border-subtle: rgba(255, 255, 255, 0.05);
   --border-strong: rgba(255, 255, 255, 0.1);
@@ -36,7 +35,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Grid overlay background */
 .bg-grid {
   position: fixed;
   inset: 0;
@@ -60,7 +58,6 @@ body {
   pointer-events: none;
 }
 
-/* Typography elements */
 h1,
 h2,
 h3,
@@ -83,7 +80,6 @@ h4 {
   -webkit-text-fill-color: transparent;
 }
 
-/* Utilities */
 .no-scroll {
   overflow: hidden;
 }
@@ -121,14 +117,11 @@ h4 {
   pointer-events: none;
 }
 
-/* Reveal Animations — delegated to Framer Motion, keeping for fallback */
 .fade-up {
   opacity: 1;
   transform: none;
 }
 
-
-/* Sticky Header */
 .top-nav {
   position: fixed;
   top: 0;
@@ -163,21 +156,43 @@ h4 {
   color: var(--accent-gradient-start);
 }
 
-.nav-menu {
-  color: var(--text-secondary);
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2.5rem;
 }
 
-.nav-menu:hover {
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent-gradient-start), var(--accent-gradient-end));
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
   color: var(--text-primary);
 }
 
+.nav-links a:hover::after {
+  width: 100%;
+}
 
-/* =========================================
-   HERO SECTION
-   ========================================= */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -251,10 +266,6 @@ h4 {
   box-shadow: 0 8px 30px rgba(124, 58, 237, 0.6);
 }
 
-
-/* =========================================
-   ORBITAL TECH STACK
-   ========================================= */
 .orbital-section {
   padding: 6rem 5vw;
   display: flex;
@@ -277,9 +288,6 @@ h4 {
   font-size: 1.1rem;
 }
 
-/* =========================================
-   ORBITAL SCENE (new Math-based)
-   ========================================= */
 .orbit-scene {
   position: relative;
   width: 620px;
@@ -332,10 +340,6 @@ h4 {
   }
 }
 
-
-/* =========================================
-   PROJECTS BENTO GRID
-   ========================================= */
 .bento-section {
   padding: 6rem 5vw 10rem;
   max-width: 1200px;
@@ -371,7 +375,6 @@ h4 {
   background: var(--bg-zinc-900);
   border: 1px solid var(--border-subtle);
   border-radius: 32px;
-  /* Extreme rounded corners */
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -469,7 +472,6 @@ h4 {
   font-weight: 500;
 }
 
-/* Floating Action Button */
 .fab {
   position: fixed;
   bottom: 2rem;
