@@ -97,8 +97,6 @@ function OrbitalRing({
             }}
             onHoverStart={() => setHovered(tech.label)}
             onHoverEnd={() => setHovered(null)}
-            whileHover={{ scale: 1.25 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           >
             {tech.icon}
             {isHovered && (
