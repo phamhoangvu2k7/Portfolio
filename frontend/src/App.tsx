@@ -1,16 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
-import axios from 'axios'
 import { Player } from '@lottiefiles/react-lottie-player'
 import { motion, useInView, type Variants } from 'framer-motion'
+import projects from './data/projects'
 import './index.css'
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  link: string;
-  image_url: string;
-}
 
 interface TechItem {
   label: string;
@@ -147,15 +139,8 @@ const outerTechs: TechItem[] = [
 ]
 
 function App() {
-  const [projects, setProjects] = useState<Project[]>([])
   const [loadingComplete, setLoadingComplete] = useState<boolean>(false)
   const overlayRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/projects/')
-      .then(response => setProjects(response.data))
-      .catch(error => console.error('Error fetching projects:', error))
-  }, [])
 
   useEffect(() => {
     document.documentElement.classList.add('no-scroll')
