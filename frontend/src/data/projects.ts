@@ -7,14 +7,20 @@ export interface Project {
 }
 
 const projects: Project[] = [
-  // Add your projects here, for example:
-  // {
-  //   id: 1,
-  //   title: "My Project",
-  //   description: "A brief description of the project.",
-  //   link: "https://github.com/yourname/project",
-  //   image_url: "https://example.com/image.png",
-  // },
+  {
+    id: 1,
+    title: "Portfolio Website",
+    description: "A professional portfolio website built with React, Vite, and Framer Motion.",
+    link: "https://github.com/phamhoangvu/myportfolio",
+    image_url: "", 
+  },
+  {
+    id: 2,
+    title: "E-commerce Platform",
+    description: "A full-stack e-commerce solution with Django and React.",
+    link: "#",
+    image_url: "",
+  },
 ];
 
 export default projects;
