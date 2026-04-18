@@ -258,7 +258,7 @@ function App() {
           </motion.div>
         </Section>
 
-        <div className="bento-grid">
+        {/* <div className="bento-grid">
           {projects.map((project, index) => (
             <motion.a
               key={project.id}
@@ -292,7 +292,7 @@ function App() {
               </div>
             </motion.a>
           ))}
-        </div>
+        </div> */}
       </main>
 
       <motion.a
