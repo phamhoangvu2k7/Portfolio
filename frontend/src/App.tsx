@@ -231,18 +231,20 @@ function App() {
           <motion.p variants={fadeUp}>Mastering modern technologies to build quality products</motion.p>
         </motion.div>
 
-        <div className="orbit-scene">
-          <div className="orbit-glow"></div>
+        <div className="orbit-wrapper">
+          <div className="orbit-scene">
+            <div className="orbit-glow"></div>
 
-          <motion.div className="orbit-center-new"
-            animate={{ boxShadow: ['0 0 40px rgba(99,88,255,0.5)', '0 0 80px rgba(99,88,255,1)', '0 0 40px rgba(99,88,255,0.5)'] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <i className="fas fa-bolt" style={{ fontSize: '2.5rem', color: 'white' }}></i>
-          </motion.div>
+            <motion.div className="orbit-center-new"
+              animate={{ boxShadow: ['0 0 40px rgba(99,88,255,0.5)', '0 0 80px rgba(99,88,255,1)', '0 0 40px rgba(99,88,255,0.5)'] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <i className="fas fa-bolt" style={{ fontSize: '2.5rem', color: 'white' }}></i>
+            </motion.div>
 
-          <OrbitalRing radius={145} items={innerTechs} />
-          <OrbitalRing radius={243} items={outerTechs} />
+            <OrbitalRing radius={145} items={innerTechs} />
+            <OrbitalRing radius={243} items={outerTechs} />
+          </div>
         </div>
       </Section>
 

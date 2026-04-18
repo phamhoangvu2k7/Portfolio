@@ -272,6 +272,8 @@ h4 {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .orbital-header {
@@ -288,11 +290,19 @@ h4 {
   font-size: 1.1rem;
 }
 
+.orbit-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+}
+
 .orbit-scene {
   position: relative;
   width: 620px;
   height: 620px;
-  margin: 0 auto;
+  flex-shrink: 0;
   overflow: visible;
 }
 
@@ -508,7 +518,8 @@ h4 {
   }
   .orbit-scene {
     transform: scale(0.75);
-    margin: -50px auto;
+    margin-top: -50px;
+    margin-bottom: -50px;
   }
   .bento-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -532,8 +543,9 @@ h4 {
   }
   .orbit-scene {
     transform: scale(0.55);
-    margin: -100px auto;
-    height: 450px;
+    margin-top: -60px;
+    margin-bottom: -80px;
+    height: 400px;
   }
   .orbital-section {
     padding: 4rem 5vw;
@@ -557,8 +569,12 @@ h4 {
   }
   .orbit-scene {
     transform: scale(0.42);
-    margin: -140px auto;
-    height: 350px;
+    margin-top: -40px;
+    margin-bottom: -100px;
+    height: 300px;
+  }
+  .orbital-header {
+    margin-bottom: 2rem;
   }
   .orbital-header h2 {
     font-size: 1.8rem;
