@@ -61,8 +61,8 @@ function OrbitalRing({
       {items.map((tech, i) => {
         const angleDeg = i * angleStep - 90
         const angleRad = (angleDeg * Math.PI) / 180
-        const cx = 300 + radius * Math.cos(angleRad) - 40
-        const cy = 300 + radius * Math.sin(angleRad) - 40
+        const x = radius * Math.cos(angleRad)
+        const y = radius * Math.sin(angleRad)
         const isHovered = hovered === tech.label
 
         return (
@@ -70,10 +70,11 @@ function OrbitalRing({
             key={tech.label}
             style={{
               position: 'absolute',
-              left: cx,
-              top: cy,
+              left: `calc(50% + ${x}px)`,
+              top: `calc(50% + ${y}px)`,
               width: 80,
               height: 80,
+              transform: 'translate(-50%, -50%)',
               borderRadius: '50%',
               background: tech.bg ?? '#18181b',
               border: `1px solid ${isHovered ? 'rgba(167,139,250,0.7)' : 'rgba(255,255,255,0.08)'}`,
@@ -136,6 +137,7 @@ const outerTechs: TechItem[] = [
   { label: 'Java', icon: <i className="devicon-java-plain colored"></i> },
   { label: 'Postman', icon: <i className="devicon-postman-plain colored"></i> },
   { label: 'Nitro', icon: <i className="devicon-nuxtjs-plain colored"></i> },
+  { label: 'Docker', icon: <i className="devicon-docker-plain colored"></i> },
 ]
 
 function App() {
@@ -252,7 +254,7 @@ function App() {
           </motion.div>
         </Section>
 
-        <div className="bento-grid">
+        {/* <div className="bento-grid">
           {projects.map((project, index) => (
             <motion.a
               key={project.id}
@@ -286,7 +288,7 @@ function App() {
               </div>
             </motion.a>
           ))}
-        </div>
+        </div> */}
       </main>
 
       <motion.a
