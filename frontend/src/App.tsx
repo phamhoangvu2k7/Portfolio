@@ -123,21 +123,23 @@ function OrbitalRing({
 }
 
 const innerTechs: TechItem[] = [
+  { label: 'Node.js', icon: <i className="devicon-nodejs-plain colored"></i> },
   { label: 'JavaScript', icon: <i className="devicon-javascript-plain colored"></i> },
   { label: 'TypeScript', icon: <i className="devicon-typescript-plain colored"></i> },
-  { label: 'MySQL', icon: <i className="devicon-mysql-plain colored"></i> },
-  { label: 'Express', icon: <i className="devicon-express-original colored"></i> },
+  { label: 'PostgreSQL', icon: <i className="devicon-postgresql-plain colored"></i> },
+  { label: 'Docker', icon: <i className="devicon-docker-plain colored"></i> },
 ]
 
 const outerTechs: TechItem[] = [
-  { label: 'Node.js', icon: <i className="devicon-nodejs-plain colored"></i> },
+  { label: 'Npm', icon: <i className="devicon-npm-plain colored"></i> },
   { label: 'MongoDB', icon: <i className="devicon-mongodb-plain colored"></i> },
-  { label: 'PostgreSQL', icon: <i className="devicon-postgresql-plain colored"></i> },
+  { label: 'MySQL', icon: <i className="devicon-mysql-plain colored"></i> },
+  { label: 'Express', icon: <i className="devicon-express-original colored" style={{ color: '#FFFFFF' }}></i> },
   { label: 'Git', icon: <i className="devicon-git-plain colored"></i> },
   { label: 'Java', icon: <i className="devicon-java-plain colored"></i> },
   { label: 'Postman', icon: <i className="devicon-postman-plain colored"></i> },
   { label: 'Nitro', icon: <i className="devicon-nuxtjs-plain colored"></i> },
-  { label: 'Docker', icon: <i className="devicon-docker-plain colored"></i> },
+  { label: 'Github', icon: <i className="devicon-github-plain colored" style={{ color: '#FFFFFF' }}></i> },
 ]
 
 function App() {
