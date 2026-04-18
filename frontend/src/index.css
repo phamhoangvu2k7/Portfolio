@@ -273,7 +273,8 @@ h4 {
   align-items: center;
   text-align: center;
   width: 100%;
-  overflow-x: hidden;
+  overflow: visible;
+  /* Ensure no internal scrollbars */
 }
 
 .orbital-header {
@@ -296,6 +297,7 @@ h4 {
   justify-content: center;
   position: relative;
   overflow: visible;
+  /* Ensure no internal scrollbars */
 }
 
 .orbit-scene {
@@ -516,11 +518,13 @@ h4 {
   .nav-links {
     gap: 1.5rem;
   }
+
   .orbit-scene {
     transform: scale(0.75);
     margin-top: -50px;
     margin-bottom: -50px;
   }
+
   .bento-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -530,30 +534,37 @@ h4 {
   .top-nav {
     padding: 1rem 1.5rem;
   }
+
   .nav-links {
-    display: none; /* Hide primary links on mobile for cleaner look */
+    display: none;
+    /* Hide primary links on mobile for cleaner look */
   }
+
   .hero-avatar {
     width: 220px;
     height: 220px;
     box-shadow: 0 0 60px rgba(124, 58, 237, 0.4);
   }
+
   .hero-name {
     font-size: 3.5rem;
   }
+
   .orbit-scene {
-    transform: scale(0.55);
-    margin-top: -60px;
-    margin-bottom: -80px;
-    height: 400px;
+    transform: scale(0.78);
+    margin-top: 0;
+    margin-bottom: -20px;
   }
+
   .orbital-section {
     padding: 4rem 5vw;
   }
+
   .bento-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+
   .bento-header h2 {
     font-size: 2rem;
   }
@@ -563,26 +574,31 @@ h4 {
   .hero-name {
     font-size: 2.8rem;
   }
+
   .hero-avatar {
     width: 160px;
     height: 160px;
   }
+
   .orbit-scene {
-    transform: scale(0.42);
-    margin-top: -40px;
-    margin-bottom: -100px;
-    height: 300px;
+    transform: scale(0.62);
+    margin-top: 10px;
+    margin-bottom: 0px;
   }
+
   .orbital-header {
     margin-bottom: 2rem;
   }
+
   .orbital-header h2 {
     font-size: 1.8rem;
   }
+
   .hero-description {
     font-size: 1rem;
     padding: 0 1rem;
   }
+
   .primary-button {
     padding: 0.8rem 2rem;
     font-size: 1rem;
