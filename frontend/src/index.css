@@ -495,8 +495,80 @@ h4 {
   transform: scale(1.1);
 }
 
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .orbit-scene {
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 1.5rem;
+  }
+  .orbit-scene {
+    transform: scale(0.75);
+    margin: -50px auto;
+  }
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .orbit-container {
-    transform: scale(0.7);
+  .top-nav {
+    padding: 1rem 1.5rem;
+  }
+  .nav-links {
+    display: none; /* Hide primary links on mobile for cleaner look */
+  }
+  .hero-avatar {
+    width: 220px;
+    height: 220px;
+    box-shadow: 0 0 60px rgba(124, 58, 237, 0.4);
+  }
+  .hero-name {
+    font-size: 3.5rem;
+  }
+  .orbit-scene {
+    transform: scale(0.55);
+    margin: -100px auto;
+    height: 450px;
+  }
+  .orbital-section {
+    padding: 4rem 5vw;
+  }
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .bento-header h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: 2.8rem;
+  }
+  .hero-avatar {
+    width: 160px;
+    height: 160px;
+  }
+  .orbit-scene {
+    transform: scale(0.42);
+    margin: -140px auto;
+    height: 350px;
+  }
+  .orbital-header h2 {
+    font-size: 1.8rem;
+  }
+  .hero-description {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  .primary-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
   }
 }
