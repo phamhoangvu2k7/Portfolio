@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { Player } from '@lottiefiles/react-lottie-player'
 import { motion, useInView, type Variants } from 'framer-motion'
-import projects from './data/projects'
+// import projects from './data/projects'
 import './index.css'
 
 interface TechItem {
@@ -296,7 +296,7 @@ function App() {
       </main>
 
       <motion.a
-        href="mailto:contact@example.com"
+        href="mailto:phamvuhoang486@gmail.com"
         className="fab"
         title="Contact Me"
         whileHover={{ scale: 1.15 }}
