@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
 import { Player } from '@lottiefiles/react-lottie-player'
-import { motion, useInView, type Variants } from 'framer-motion'
-// import projects from './data/projects'
+import { motion, useInView, AnimatePresence, type Variants } from 'framer-motion'
+import projects from './data/projects'
 import './index.css'
 
+// ---- Types ----
 interface TechItem {
   label: string;
   icon: React.ReactNode;
@@ -13,6 +14,7 @@ interface TechItem {
   fontSize?: string;
 }
 
+// ---- Framer Motion Variants ----
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
@@ -23,6 +25,16 @@ const staggerContainer: Variants = {
   visible: { transition: { staggerChildren: 0.12 } },
 }
 
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut', delay: i * 0.15 },
+  }),
+}
+
+// ---- Scroll-triggered Section ----
 function Section({ children, className = '', id }: { children: React.ReactNode; className?: string; id?: string }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px 0px' })
@@ -33,13 +45,8 @@ function Section({ children, className = '', id }: { children: React.ReactNode; 
   )
 }
 
-function OrbitalRing({
-  radius,
-  items,
-}: {
-  radius: number;
-  items: TechItem[];
-}) {
+// ---- Orbital Ring Component ----
+function OrbitalRing({ radius, items }: { radius: number; items: TechItem[] }) {
   const angleStep = 360 / items.length
   const [hovered, setHovered] = useState<string | null>(null)
 
@@ -122,6 +129,7 @@ function OrbitalRing({
   )
 }
 
+// ---- Tech Data ----
 const innerTechs: TechItem[] = [
   { label: 'Node.js', icon: <i className="devicon-nodejs-plain colored"></i> },
   { label: 'JavaScript', icon: <i className="devicon-javascript-plain colored"></i> },
@@ -142,10 +150,65 @@ const outerTechs: TechItem[] = [
   { label: 'Github', icon: <i className="devicon-github-plain colored" style={{ color: '#FFFFFF' }}></i> },
 ]
 
+// ---- Project Card Component ----
+function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-40px 0px' })
+
+  return (
+    <motion.a
+      ref={ref}
+      href={project.link}
+      target="_blank"
+      rel="noreferrer"
+      className="project-card"
+      custom={index}
+      variants={cardVariants}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      whileHover={{ y: -8 }}
+      whileTap={{ scale: 0.98 }}
+      style={{ '--accent-color': project.accentColor } as React.CSSProperties}
+    >
+      {/* Icon area */}
+      <div className="project-icon-wrap" style={{ background: `${project.accentColor}18`, border: `1px solid ${project.accentColor}33` }}>
+        <i className={project.icon} style={{ color: project.accentColor, fontSize: '2.2rem' }}></i>
+      </div>
+
+      {/* Content */}
+      <div className="project-content">
+        <div className="project-title-row">
+          <h3 className="project-title">{project.title}</h3>
+          <span className="project-github-icon">
+            <i className="fab fa-github"></i>
+          </span>
+        </div>
+        <p className="project-description">{project.description}</p>
+
+        {/* Tech tags */}
+        <div className="project-tags">
+          {project.tags.map((tag) => (
+            <span key={tag} className="project-tag">{tag}</span>
+          ))}
+        </div>
+
+        {/* Footer CTA */}
+        <div className="project-cta">
+          <span>View on GitHub</span>
+          <i className="fas fa-arrow-right"></i>
+        </div>
+      </div>
+    </motion.a>
+  )
+}
+
+// ---- Main App ----
 function App() {
   const [loadingComplete, setLoadingComplete] = useState<boolean>(false)
+  const [menuOpen, setMenuOpen] = useState<boolean>(false)
   const overlayRef = useRef<HTMLDivElement>(null)
 
+  // Lock scroll during intro animation
   useEffect(() => {
     document.documentElement.classList.add('no-scroll')
     document.body.classList.add('no-scroll')
@@ -154,6 +217,26 @@ function App() {
       document.body.classList.remove('no-scroll')
     }
   }, [])
+
+  // Close menu when resizing to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) setMenuOpen(false)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Download CV via Google Drive direct download link
+  const CV_DOWNLOAD_URL = 'https://drive.google.com/uc?export=download&id=18rhFjj3gVYAUOwtzz98tLEr0FJ0bKH00'
+
+  const handleDownloadCV = (e: React.MouseEvent) => {
+    e.preventDefault()
+    window.open(CV_DOWNLOAD_URL, '_blank')
+  }
+
+  // Close menu on link click
+  const handleNavClick = () => setMenuOpen(false)
 
   const handleLottieComplete = () => {
     if (overlayRef.current) {
@@ -166,20 +249,75 @@ function App() {
 
   return (
     <>
+      {/* Background */}
       <div className="bg-grid"></div>
       <div className="bg-glow"></div>
 
+      {/* ===== NAVBAR ===== */}
       <nav className="top-nav">
-        <a href="#home" className="logo">
+        <a href="#home" className="logo" onClick={handleNavClick}>
           phamhoangvu
         </a>
+
+        {/* Center links — desktop */}
         <div className="nav-links">
           <a href="#home">Home</a>
           <a href="#skills">Skill</a>
           <a href="#projects">Project</a>
         </div>
+
+        {/* Right side — desktop Download CV */}
+        <div className="nav-right">
+          <button
+            onClick={handleDownloadCV}
+            className="btn-download-cv"
+          >
+            <i className="fas fa-download"></i>
+            <span>Download CV</span>
+          </button>
+
+          {/* Hamburger — mobile only */}
+          <button
+            className={`hamburger${menuOpen ? ' open' : ''}`}
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </nav>
 
+      {/* ===== MOBILE MENU OVERLAY ===== */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+          >
+            <a href="#home" onClick={handleNavClick}><i className="fas fa-house"></i>Home</a>
+            <a href="#skills" onClick={handleNavClick}><i className="fas fa-code"></i>Skill</a>
+            <a href="#projects" onClick={handleNavClick}><i className="fas fa-folder-open"></i>Project</a>
+            <button
+              className="mobile-download-cv"
+              onClick={(e) => { handleNavClick(); handleDownloadCV(e as unknown as React.MouseEvent) }}
+            >
+              <i className="fas fa-download"></i>Download CV
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Backdrop for closing menu */}
+      {menuOpen && (
+        <div className="menu-backdrop" onClick={() => setMenuOpen(false)} />
+      )}
+
+      {/* ===== LOADING OVERLAY ===== */}
       {!loadingComplete && (
         <div id="loading-overlay" ref={overlayRef}>
           <Player
@@ -196,6 +334,7 @@ function App() {
         </div>
       )}
 
+      {/* ===== HERO ===== */}
       <header id="home" className="hero">
         <div className="hero-content">
           <motion.img
@@ -223,10 +362,26 @@ function App() {
             Optimizing SEO, page loading speed, and delivering exceptional user experiences.
           </motion.p>
 
-
+          {/* Hero CTA buttons */}
+          <motion.div
+            className="hero-buttons"
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.35 }}
+          >
+            <a href="#projects" className="btn-primary">View Projects</a>
+            <button
+              onClick={handleDownloadCV}
+              className="btn-secondary"
+            >
+              <i className="fas fa-download"></i> Download CV
+            </button>
+          </motion.div>
         </div>
       </header>
 
+      {/* ===== SKILLS ===== */}
       <Section id="skills" className="orbital-section">
         <motion.div className="orbital-header" variants={staggerContainer}>
           <motion.h2 variants={fadeUp}>What technologies do I use?</motion.h2>
@@ -250,51 +405,24 @@ function App() {
         </div>
       </Section>
 
-      <main id="projects" className="bento-section">
+      {/* ===== PROJECTS ===== */}
+      <section id="projects" className="projects-section">
         <Section>
-          <motion.div className="bento-header" variants={staggerContainer}>
+          <motion.div className="section-header" variants={staggerContainer}>
+            <motion.span className="section-label" variants={fadeUp}>My Work</motion.span>
             <motion.h2 variants={fadeUp}>Projects &amp; Experience</motion.h2>
             <motion.p variants={fadeUp}>A collection of projects I've worked on throughout my career</motion.p>
           </motion.div>
         </Section>
 
-        {/* <div className="bento-grid">
+        <div className="projects-grid">
           {projects.map((project, index) => (
-            <motion.a
-              key={project.id}
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              className="bento-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px 0px' }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: (index % 3) * 0.1 }}
-              whileHover={{ y: -8, borderColor: 'rgba(255,255,255,0.15)', boxShadow: '0 24px 50px rgba(0,0,0,0.5)' }}
-            >
-              <div className="bento-image-wrapper">
-                {project.image_url ? (
-                  <img src={project.image_url} alt={project.title} className="bento-image" />
-                ) : (
-                  <div className="bento-placeholder"><i className="fas fa-laptop-code"></i></div>
-                )}
-              </div>
-              <div className="bento-content">
-                <div className="bento-title">
-                  {project.title}
-                  <i className="fas fa-arrow-right"></i>
-                </div>
-                <p className="bento-desc">{project.description}</p>
-                <div className="bento-footer">
-                  <span className="bento-tag">UX/UI</span>
-                  <span className="bento-tag">Development</span>
-                </div>
-              </div>
-            </motion.a>
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
-        </div> */}
-      </main>
+        </div>
+      </section>
 
+      {/* ===== CONTACT FAB ===== */}
       <motion.a
         href="mailto:phamvuhoang486@gmail.com"
         className="fab"
