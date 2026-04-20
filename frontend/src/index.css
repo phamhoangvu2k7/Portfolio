@@ -435,8 +435,9 @@ a {
 
 .hero-name {
   font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  line-height: 1.2;
+  padding-bottom: 0.1em;
+  margin-bottom: 0.9rem;
   background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
   -webkit-background-clip: text;
   background-clip: text;
