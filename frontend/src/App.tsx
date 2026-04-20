@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { Player } from '@lottiefiles/react-lottie-player'
-import { motion, useInView, AnimatePresence, type Variants, useScroll, useSpring, useTransform, useMotionValue } from 'framer-motion'
+import { motion, useInView, AnimatePresence, type Variants, useScroll, useSpring, useMotionValue } from 'framer-motion'
 import projects from './data/projects'
 import './index.css'
 
