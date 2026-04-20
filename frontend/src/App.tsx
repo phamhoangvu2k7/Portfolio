@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { Player } from '@lottiefiles/react-lottie-player'
-import { motion, useInView, AnimatePresence, type Variants } from 'framer-motion'
+import { motion, useInView, AnimatePresence, type Variants, useScroll, useSpring, useTransform, useMotionValue } from 'framer-motion'
 import projects from './data/projects'
 import './index.css'
 
@@ -166,8 +166,6 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       variants={cardVariants}
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
-      whileHover={{ y: -8 }}
-      whileTap={{ scale: 0.98 }}
       style={{ '--accent-color': project.accentColor } as React.CSSProperties}
     >
       {/* Icon area */}
@@ -207,6 +205,22 @@ function App() {
   const [loadingComplete, setLoadingComplete] = useState<boolean>(false)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
   const overlayRef = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  })
+
+  // Mouse move for background glow
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  function handleMouseMove({ clientX, clientY }: React.MouseEvent) {
+    mouseX.set(clientX)
+    mouseY.set(clientY)
+  }
 
   // Lock scroll during intro animation
   useEffect(() => {
@@ -248,9 +262,19 @@ function App() {
   }
 
   return (
-    <>
+    <div onMouseMove={handleMouseMove} style={{ position: 'relative' }}>
+      {/* Scroll Progress Bar */}
+      <motion.div className="progress-bar" style={{ scaleX }} />
+
       {/* Background */}
       <div className="bg-grid"></div>
+      <motion.div
+        className="cursor-glow"
+        style={{
+          left: mouseX,
+          top: mouseY,
+        }}
+      />
       <div className="bg-glow"></div>
 
       {/* ===== NAVBAR ===== */}
@@ -263,6 +287,7 @@ function App() {
         <div className="nav-links">
           <a href="#home">Home</a>
           <a href="#skills">Skill</a>
+          <a href="#experience">Experience</a>
           <a href="#projects">Project</a>
         </div>
 
@@ -301,6 +326,7 @@ function App() {
           >
             <a href="#home" onClick={handleNavClick}><i className="fas fa-house"></i>Home</a>
             <a href="#skills" onClick={handleNavClick}><i className="fas fa-code"></i>Skill</a>
+            <a href="#experience" onClick={handleNavClick}><i className="fas fa-briefcase"></i>Experience</a>
             <a href="#projects" onClick={handleNavClick}><i className="fas fa-folder-open"></i>Project</a>
             <button
               className="mobile-download-cv"
@@ -337,18 +363,21 @@ function App() {
       {/* ===== HERO ===== */}
       <header id="home" className="hero">
         <div className="hero-content">
-          <motion.img
-            src={`${import.meta.env.BASE_URL}avatar.jpg`}
-            alt="Avatar"
-            className="hero-avatar"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            whileHover={{ scale: 1.05 }}
-          />
+          <div className="hero-visual">
+            <motion.img
+              src={`${import.meta.env.BASE_URL}avatar.jpg`}
+              alt="Avatar"
+              className="hero-avatar"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              whileHover={{ scale: 1.05 }}
+            />
+            <div className="avatar-ring"></div>
+          </div>
 
           <motion.h1 className="hero-name" variants={fadeUp} initial="hidden" animate="visible">
-            Pham Hoang <span style={{ color: '#ffffff' }}>Vu</span>
+            Pham Hoang <span className="text-gradient-alt">Vu</span>
           </motion.h1>
 
           <motion.h2 className="hero-role" variants={fadeUp} initial="hidden" animate="visible"
@@ -358,8 +387,10 @@ function App() {
 
           <motion.p className="hero-description" variants={fadeUp} initial="hidden" animate="visible"
             transition={{ delay: 0.2 }}>
-            I can help you build websites, applications, and innovative robust solutions.
-            Optimizing SEO, page loading speed, and delivering exceptional user experiences.
+            I specialize in crafting high-performance web solutions with a focus on
+            <span className="text-highlight"> scalability</span>,
+            <span className="text-highlight"> smooth UX</span>, and
+            <span className="text-highlight"> clean architecture</span>.
           </motion.p>
 
           {/* Hero CTA buttons */}
@@ -370,15 +401,19 @@ function App() {
             animate="visible"
             transition={{ delay: 0.35 }}
           >
-            <a href="#projects" className="btn-primary">View Projects</a>
+            <a href="#projects" className="btn-primary-magnetic">
+              <span>Explore My Work</span>
+              <i className="fas fa-arrow-right"></i>
+            </a>
             <button
               onClick={handleDownloadCV}
-              className="btn-secondary"
+              className="btn-secondary-glass"
             >
-              <i className="fas fa-download"></i> Download CV
+              <i className="fas fa-download"></i> Get Resume
             </button>
           </motion.div>
         </div>
+
       </header>
 
       {/* ===== SKILLS ===== */}
@@ -405,13 +440,51 @@ function App() {
         </div>
       </Section>
 
+      {/* ===== EXPERIENCE ===== */}
+      <section id="experience" className="experience-section">
+        <Section>
+          <motion.div className="section-header" variants={staggerContainer}>
+            <motion.h2 variants={fadeUp}>Experience</motion.h2>
+            <motion.p variants={fadeUp}>My professional path as a software engineer</motion.p>
+          </motion.div>
+        </Section>
+
+        <div className="experience-wrapper">
+
+          <div className="experience-card">
+            <div className="timeline-dot"></div>
+            <div className="experience-main-row">
+              <div className="experience-company-box">
+                <a
+                  href="https://www.thecodeorigin.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="company-name-link"
+                >
+                  Thecodeorigin
+                </a>
+                <span className="role-separator">—</span>
+                <span className="role-title">internship backend</span>
+              </div>
+              <div className="experience-timeframe">3/2026 - Present</div>
+            </div>
+
+            <div className="experience-footer-row">
+              <div className="location-pin">
+                <i className="fas fa-location-dot"></i>
+                <span>289 Dong Da, Da Nang, Viet Nam</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== PROJECTS ===== */}
       <section id="projects" className="projects-section">
         <Section>
           <motion.div className="section-header" variants={staggerContainer}>
-            <motion.span className="section-label" variants={fadeUp}>My Work</motion.span>
-            <motion.h2 variants={fadeUp}>Projects &amp; Experience</motion.h2>
-            <motion.p variants={fadeUp}>A collection of projects I've worked on throughout my career</motion.p>
+            <motion.h2 variants={fadeUp}>Selected Projects</motion.h2>
+            <motion.p variants={fadeUp}>A showcase of my recent technical projects and works</motion.p>
           </motion.div>
         </Section>
 
@@ -432,7 +505,7 @@ function App() {
       >
         <i className="far fa-envelope"></i>
       </motion.a>
-    </>
+    </div>
   )
 }
 
