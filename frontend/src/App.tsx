@@ -464,7 +464,7 @@ function App() {
                   Thecodeorigin
                 </a>
                 <span className="role-separator">—</span>
-                <span className="role-title">Internship</span>
+                <span className="role-title">Intern Backend Developer</span>
               </div>
               <div className="experience-timeframe">3/2026 - Present</div>
             </div>
