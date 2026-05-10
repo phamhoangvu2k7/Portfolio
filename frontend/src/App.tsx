@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { Player } from '@lottiefiles/react-lottie-player'
 import { motion, useInView, AnimatePresence, type Variants, useScroll, useSpring, useMotionValue } from 'framer-motion'
 import projects from './data/projects'
+import SpaceBackground from './components/SpaceBackground'
 import './index.css'
 
 // ---- Types ----
@@ -266,6 +267,9 @@ function App() {
       {/* Scroll Progress Bar */}
       <motion.div className="progress-bar" style={{ scaleX }} />
 
+      {/* 3D Space Background */}
+      <SpaceBackground />
+
       {/* Background */}
       <div className="bg-grid"></div>
       <motion.div
@@ -373,7 +377,6 @@ function App() {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               whileHover={{ scale: 1.05 }}
             />
-            <div className="avatar-ring"></div>
           </div>
 
           <motion.h1 className="hero-name" variants={fadeUp} initial="hidden" animate="visible">
@@ -413,7 +416,6 @@ function App() {
             </button>
           </motion.div>
         </div>
-
       </header>
 
       {/* ===== SKILLS ===== */}
