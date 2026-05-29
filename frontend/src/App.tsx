@@ -2,18 +2,8 @@ import { useEffect, useState, useRef } from 'react'
 import { Player } from '@lottiefiles/react-lottie-player'
 import { motion, useInView, AnimatePresence, type Variants, useScroll, useSpring, useMotionValue } from 'framer-motion'
 import projects from './data/projects'
-import SpaceBackground from './components/SpaceBackground'
+import ParticleBackground from './components/ParticleBackground'
 import './index.css'
-
-// ---- Types ----
-interface TechItem {
-  label: string;
-  icon: React.ReactNode;
-  color?: string;
-  bg?: string;
-  textColor?: string;
-  fontSize?: string;
-}
 
 // ---- Framer Motion Variants ----
 const fadeUp: Variants = {
@@ -46,112 +36,49 @@ function Section({ children, className = '', id }: { children: React.ReactNode; 
   )
 }
 
-// ---- Orbital Ring Component ----
-function OrbitalRing({ radius, items }: { radius: number; items: TechItem[] }) {
-  const angleStep = 360 / items.length
-  const [hovered, setHovered] = useState<string | null>(null)
+// ---- Tech Data ----
+interface TechItem {
+  label: string
+  icon: string
+}
 
+const languagesAndFrameworks: TechItem[] = [
+  { label: 'JavaScript', icon: 'devicon-javascript-plain colored' },
+  { label: 'TypeScript', icon: 'devicon-typescript-plain colored' },
+  { label: 'Java', icon: 'devicon-java-plain colored' },
+  { label: 'Node.js', icon: 'devicon-nodejs-plain colored' },
+  { label: 'Express', icon: 'devicon-express-original' },
+]
+
+const databases: TechItem[] = [
+  { label: 'PostgreSQL', icon: 'devicon-postgresql-plain colored' },
+  { label: 'MongoDB', icon: 'devicon-mongodb-plain colored' },
+  { label: 'MySQL', icon: 'devicon-mysql-plain colored' },
+]
+
+const devopsAndTools: TechItem[] = [
+  { label: 'Docker', icon: 'devicon-docker-plain colored' },
+  { label: 'Git', icon: 'devicon-git-plain colored' },
+  { label: 'GitHub', icon: 'devicon-github-original' },
+  { label: 'Postman', icon: 'devicon-postman-plain colored' },
+  { label: 'Npm', icon: 'devicon-npm-original-wordmark colored' },
+]
+
+// ---- Skill Card ----
+function SkillCard({ tech, index }: { tech: TechItem; index: number }) {
   return (
-    <>
-      <div style={{
-        position: 'absolute',
-        width: radius * 2,
-        height: radius * 2,
-        top: '50%',
-        left: '50%',
-        marginTop: -radius,
-        marginLeft: -radius,
-        borderRadius: '50%',
-        border: '1px solid rgba(120, 100, 255, 0.2)',
-        pointerEvents: 'none',
-      }} />
-
-      {items.map((tech, i) => {
-        const angleDeg = i * angleStep - 90
-        const angleRad = (angleDeg * Math.PI) / 180
-        const x = radius * Math.cos(angleRad)
-        const y = radius * Math.sin(angleRad)
-        const isHovered = hovered === tech.label
-
-        return (
-          <motion.div
-            key={tech.label}
-            style={{
-              position: 'absolute',
-              left: `calc(50% + ${x}px)`,
-              top: `calc(50% + ${y}px)`,
-              width: 80,
-              height: 80,
-              transform: 'translate(-50%, -50%)',
-              borderRadius: '50%',
-              background: tech.bg ?? '#18181b',
-              border: `1px solid ${isHovered ? 'rgba(167,139,250,0.7)' : 'rgba(255,255,255,0.08)'}`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: isHovered ? '0 0 22px rgba(167,139,250,0.5)' : '0 4px 16px rgba(0,0,0,0.6)',
-              color: tech.textColor ?? '#ffffff',
-              fontSize: tech.fontSize ?? '2.6rem',
-              fontWeight: 800,
-              cursor: 'default',
-              zIndex: isHovered ? 20 : 2,
-            }}
-            onHoverStart={() => setHovered(tech.label)}
-            onHoverEnd={() => setHovered(null)}
-          >
-            {tech.icon}
-            {isHovered && (
-              <motion.span
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                style={{
-                  position: 'absolute',
-                  bottom: '-30px',
-                  left: '50%',
-                  translateX: '-50%',
-                  whiteSpace: 'nowrap',
-                  fontSize: '0.72rem',
-                  fontWeight: 600,
-                  color: '#fff',
-                  background: 'rgba(0,0,0,0.9)',
-                  padding: '3px 10px',
-                  borderRadius: '999px',
-                  pointerEvents: 'none',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                }}
-              >
-                {tech.label}
-              </motion.span>
-            )}
-          </motion.div>
-        )
-      })}
-    </>
+    <motion.div
+      className="skill-card"
+      custom={index}
+      variants={cardVariants}
+    >
+      <i className={tech.icon}></i>
+      <span>{tech.label}</span>
+    </motion.div>
   )
 }
 
-// ---- Tech Data ----
-const innerTechs: TechItem[] = [
-  { label: 'Node.js', icon: <i className="devicon-nodejs-plain colored"></i> },
-  { label: 'JavaScript', icon: <i className="devicon-javascript-plain colored"></i> },
-  { label: 'TypeScript', icon: <i className="devicon-typescript-plain colored"></i> },
-  { label: 'PostgreSQL', icon: <i className="devicon-postgresql-plain colored"></i> },
-  { label: 'Docker', icon: <i className="devicon-docker-plain colored"></i> },
-]
-
-const outerTechs: TechItem[] = [
-  { label: 'Npm', icon: <i className="devicon-npm-plain colored"></i> },
-  { label: 'MongoDB', icon: <i className="devicon-mongodb-plain colored"></i> },
-  { label: 'MySQL', icon: <i className="devicon-mysql-plain colored"></i> },
-  { label: 'Express', icon: <i className="devicon-express-original colored" style={{ color: '#FFFFFF' }}></i> },
-  { label: 'Git', icon: <i className="devicon-git-plain colored"></i> },
-  { label: 'Java', icon: <i className="devicon-java-plain colored"></i> },
-  { label: 'Postman', icon: <i className="devicon-postman-plain colored"></i> },
-  { label: 'Nitro', icon: <i className="devicon-nuxtjs-plain colored"></i> },
-  { label: 'Github', icon: <i className="devicon-github-plain colored" style={{ color: '#FFFFFF' }}></i> },
-]
-
-// ---- Project Card Component ----
+// ---- Project Card ----
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px 0px' })
@@ -169,29 +96,25 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       animate={inView ? 'visible' : 'hidden'}
       style={{ '--accent-color': project.accentColor } as React.CSSProperties}
     >
-      {/* Icon area */}
       <div className="project-icon-wrap" style={{ background: `${project.accentColor}18`, border: `1px solid ${project.accentColor}33` }}>
         <i className={project.icon} style={{ color: project.accentColor, fontSize: '2.2rem' }}></i>
       </div>
 
-      {/* Content */}
       <div className="project-content">
         <div className="project-title-row">
           <h3 className="project-title">{project.title}</h3>
           <span className="project-github-icon">
-            <i className="fab fa-github"></i>
+            <i className="fa-brands fa-github"></i>
           </span>
         </div>
         <p className="project-description">{project.description}</p>
 
-        {/* Tech tags */}
         <div className="project-tags">
           {project.tags.map((tag) => (
             <span key={tag} className="project-tag">{tag}</span>
           ))}
         </div>
 
-        {/* Footer CTA */}
         <div className="project-cta">
           <span>View on GitHub</span>
           <i className="fas fa-arrow-right"></i>
@@ -203,18 +126,13 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 // ---- Main App ----
 function App() {
-  const [loadingComplete, setLoadingComplete] = useState<boolean>(false)
-  const [menuOpen, setMenuOpen] = useState<boolean>(false)
+  const [loadingComplete, setLoadingComplete] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const overlayRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
 
-  // Mouse move for background glow
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
@@ -223,7 +141,6 @@ function App() {
     mouseY.set(clientY)
   }
 
-  // Lock scroll during intro animation
   useEffect(() => {
     document.documentElement.classList.add('no-scroll')
     document.body.classList.add('no-scroll')
@@ -233,7 +150,6 @@ function App() {
     }
   }, [])
 
-  // Close menu when resizing to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) setMenuOpen(false)
@@ -242,7 +158,6 @@ function App() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Download CV via Google Drive direct download link
   const CV_DOWNLOAD_URL = 'https://drive.google.com/uc?export=download&id=18rhFjj3gVYAUOwtzz98tLEr0FJ0bKH00'
 
   const handleDownloadCV = (e: React.MouseEvent) => {
@@ -250,7 +165,6 @@ function App() {
     window.open(CV_DOWNLOAD_URL, '_blank')
   }
 
-  // Close menu on link click
   const handleNavClick = () => setMenuOpen(false)
 
   const handleLottieComplete = () => {
@@ -264,21 +178,12 @@ function App() {
 
   return (
     <div onMouseMove={handleMouseMove} style={{ position: 'relative' }}>
-      {/* Scroll Progress Bar */}
       <motion.div className="progress-bar" style={{ scaleX }} />
 
-      {/* 3D Space Background */}
-      <SpaceBackground />
+      <ParticleBackground />
 
-      {/* Background */}
       <div className="bg-grid"></div>
-      <motion.div
-        className="cursor-glow"
-        style={{
-          left: mouseX,
-          top: mouseY,
-        }}
-      />
+      <motion.div className="cursor-glow" style={{ left: mouseX, top: mouseY }} />
       <div className="bg-glow"></div>
 
       {/* ===== NAVBAR ===== */}
@@ -287,25 +192,20 @@ function App() {
           phamhoangvu
         </a>
 
-        {/* Center links — desktop */}
         <div className="nav-links">
           <a href="#home">Home</a>
-          <a href="#skills">Skill</a>
+          <a href="#skills">Skills</a>
           <a href="#experience">Experience</a>
-          <a href="#projects">Project</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
         </div>
 
-        {/* Right side — desktop Download CV */}
         <div className="nav-right">
-          <button
-            onClick={handleDownloadCV}
-            className="btn-download-cv"
-          >
+          <button onClick={handleDownloadCV} className="btn-download-cv">
             <i className="fas fa-download"></i>
             <span>Download CV</span>
           </button>
 
-          {/* Hamburger — mobile only */}
           <button
             className={`hamburger${menuOpen ? ' open' : ''}`}
             onClick={() => setMenuOpen((v) => !v)}
@@ -318,7 +218,7 @@ function App() {
         </div>
       </nav>
 
-      {/* ===== MOBILE MENU OVERLAY ===== */}
+      {/* ===== MOBILE MENU ===== */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -329,9 +229,10 @@ function App() {
             transition={{ duration: 0.25, ease: 'easeOut' }}
           >
             <a href="#home" onClick={handleNavClick}><i className="fas fa-house"></i>Home</a>
-            <a href="#skills" onClick={handleNavClick}><i className="fas fa-code"></i>Skill</a>
+            <a href="#skills" onClick={handleNavClick}><i className="fas fa-code"></i>Skills</a>
             <a href="#experience" onClick={handleNavClick}><i className="fas fa-briefcase"></i>Experience</a>
-            <a href="#projects" onClick={handleNavClick}><i className="fas fa-folder-open"></i>Project</a>
+            <a href="#projects" onClick={handleNavClick}><i className="fas fa-folder-open"></i>Projects</a>
+            <a href="#contact" onClick={handleNavClick}><i className="fas fa-envelope"></i>Contact</a>
             <button
               className="mobile-download-cv"
               onClick={(e) => { handleNavClick(); handleDownloadCV(e as unknown as React.MouseEvent) }}
@@ -342,10 +243,7 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* Backdrop for closing menu */}
-      {menuOpen && (
-        <div className="menu-backdrop" onClick={() => setMenuOpen(false)} />
-      )}
+      {menuOpen && <div className="menu-backdrop" onClick={() => setMenuOpen(false)} />}
 
       {/* ===== LOADING OVERLAY ===== */}
       {!loadingComplete && (
@@ -396,22 +294,13 @@ function App() {
             <span className="text-highlight"> clean architecture</span>.
           </motion.p>
 
-          {/* Hero CTA buttons */}
-          <motion.div
-            className="hero-buttons"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.35 }}
-          >
+          <motion.div className="hero-buttons" variants={fadeUp} initial="hidden" animate="visible"
+            transition={{ delay: 0.35 }}>
             <a href="#projects" className="btn-primary-magnetic">
               <span>Explore My Work</span>
               <i className="fas fa-arrow-right"></i>
             </a>
-            <button
-              onClick={handleDownloadCV}
-              className="btn-secondary-glass"
-            >
+            <button onClick={handleDownloadCV} className="btn-secondary-glass">
               <i className="fas fa-download"></i> Get Resume
             </button>
           </motion.div>
@@ -419,28 +308,49 @@ function App() {
       </header>
 
       {/* ===== SKILLS ===== */}
-      <Section id="skills" className="orbital-section">
-        <motion.div className="orbital-header" variants={staggerContainer}>
-          <motion.h2 variants={fadeUp}>What technologies do I use?</motion.h2>
-          <motion.p variants={fadeUp}>Mastering modern technologies to build quality products</motion.p>
-        </motion.div>
+      <section id="skills" className="skills-section">
+        <Section>
+          <motion.div className="section-header" variants={staggerContainer}>
+            <motion.h2 variants={fadeUp}>Skills & Technologies</motion.h2>
+            <motion.p variants={fadeUp}>Technologies I use to build quality products</motion.p>
+          </motion.div>
+        </Section>
 
-        <div className="orbit-wrapper">
-          <div className="orbit-scene">
-            <div className="orbit-glow"></div>
-
-            <motion.div className="orbit-center-new"
-              animate={{ boxShadow: ['0 0 40px rgba(99,88,255,0.5)', '0 0 80px rgba(99,88,255,1)', '0 0 40px rgba(99,88,255,0.5)'] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <i className="fas fa-bolt" style={{ fontSize: '2.5rem', color: 'white' }}></i>
+        <div className="skills-wrapper">
+          <Section>
+            <motion.div variants={staggerContainer}>
+              <h3 className="skills-group-title">Languages & Frameworks</h3>
+              <div className="skills-grid">
+                {languagesAndFrameworks.map((tech, i) => (
+                  <SkillCard key={tech.label} tech={tech} index={i} />
+                ))}
+              </div>
             </motion.div>
+          </Section>
 
-            <OrbitalRing radius={145} items={innerTechs} />
-            <OrbitalRing radius={243} items={outerTechs} />
-          </div>
+          <Section>
+            <motion.div variants={staggerContainer}>
+              <h3 className="skills-group-title">Databases</h3>
+              <div className="skills-grid">
+                {databases.map((tech, i) => (
+                  <SkillCard key={tech.label} tech={tech} index={i} />
+                ))}
+              </div>
+            </motion.div>
+          </Section>
+
+          <Section>
+            <motion.div variants={staggerContainer}>
+              <h3 className="skills-group-title">DevOps & Tools</h3>
+              <div className="skills-grid">
+                {devopsAndTools.map((tech, i) => (
+                  <SkillCard key={tech.label} tech={tech} index={i} />
+                ))}
+              </div>
+            </motion.div>
+          </Section>
         </div>
-      </Section>
+      </section>
 
       {/* ===== EXPERIENCE ===== */}
       <section id="experience" className="experience-section">
@@ -452,7 +362,6 @@ function App() {
         </Section>
 
         <div className="experience-wrapper">
-
           <div className="experience-card">
             <div className="timeline-dot"></div>
             <div className="experience-main-row">
@@ -470,6 +379,13 @@ function App() {
               </div>
               <div className="experience-timeframe">3/2026 - Present</div>
             </div>
+
+            <ul className="experience-bullets">
+              <li>Develop and maintain RESTful APIs using Node.js and NestJS framework</li>
+              <li>Work with PostgreSQL and MongoDB databases for data modeling and query optimization</li>
+              <li>Collaborate with the team using Git workflows and code review processes</li>
+              <li>Write unit tests and integration tests to ensure code quality</li>
+            </ul>
 
             <div className="experience-footer-row">
               <div className="location-pin">
@@ -496,6 +412,32 @@ function App() {
           ))}
         </div>
       </section>
+
+      {/* ===== CONTACT / FOOTER ===== */}
+      <footer id="contact" className="contact-section">
+        <Section>
+          <motion.div className="section-header" variants={staggerContainer}>
+            <motion.h2 variants={fadeUp}>Get in Touch</motion.h2>
+            <motion.p variants={fadeUp}>Feel free to reach out for collaborations or opportunities</motion.p>
+          </motion.div>
+        </Section>
+
+        <motion.div className="contact-content" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.6 }}>
+          <div className="contact-socials">
+            <a href="https://github.com/phamhoangvu2k7" target="_blank" rel="noreferrer" className="social-link" aria-label="GitHub">
+              <i className="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/phamhoangvu" target="_blank" rel="noreferrer" className="social-link" aria-label="LinkedIn">
+              <i className="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+        </motion.div>
+
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} Pham Hoang Vu. All rights reserved.</p>
+        </div>
+      </footer>
 
       {/* ===== CONTACT FAB ===== */}
       <motion.a

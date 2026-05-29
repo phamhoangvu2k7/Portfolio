@@ -10,15 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.2.0",
     "@lottiefiles/react-lottie-player": "^3.6.0",
-    "@types/three": "^0.184.1",
-    "axios": "^1.13.6",
     "framer-motion": "^12.36.0",
-    "intersection-observer": "^0.12.2",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "three": "^0.184.0"
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
