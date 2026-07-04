@@ -13,7 +13,7 @@ const projects: Project[] = [
     id: 1,
     title: "Product Management System",
     description:
-      "A comprehensive web application for managing product inventories with full CRUD operations, cloud-based image management via Cloudinary, rich text editing with TinyMCE, and SEO-friendly slug generation.",
+      "A clean web application to manage product lists, upload images, and edit descriptions easily.",
     link: "https://github.com/phamhoangvu2k7/Product-Management",
     tags: ["Node.js", "Express.js", "MongoDB", "Mongoose", "Cloudinary", "Pug"],
     icon: "fas fa-boxes-stacked",
@@ -23,7 +23,7 @@ const projects: Project[] = [
     id: 2,
     title: "Task Management API",
     description:
-      "A RESTful API for task management with full Swagger/OpenAPI documentation. Supports task creation, updating, deletion, and status tracking with a clean, well-documented API structure.",
+      "A well-structured service to organize daily tasks, featuring clear documentation for developers.",
     link: "https://github.com/phamhoangvu2k7/Task-Management",
     tags: ["Node.js", "Express.js", "Swagger", "REST API"],
     icon: "fas fa-list-check",
@@ -33,7 +33,7 @@ const projects: Project[] = [
     id: 3,
     title: "To-Do List App",
     description:
-      "A modern Fullstack to-do list application with a beautiful Glassmorphism UI. Features task CRUD, importance flagging, server-side rendering for fast load times, and is deployed on Render with PostgreSQL on Neon.tech.",
+      "A modern to-do list web app with a beautiful translucent interface. Helps you highlight important tasks and stay productive.",
     link: "https://github.com/phamhoangvu2k7/To-Do-List",
     tags: ["Node.js", "Express.js", "PostgreSQL", "Pug", "Bootstrap", "Render"],
     icon: "fas fa-check-double",

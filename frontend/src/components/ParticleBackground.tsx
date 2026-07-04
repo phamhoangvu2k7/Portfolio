@@ -103,7 +103,7 @@ const ParticleBackground: React.FC = () => {
         inset: 0,
         zIndex: -3,
         pointerEvents: 'none',
-        background: 'linear-gradient(135deg, #000000 0%, #0a0015 50%, #000000 100%)',
+        background: 'transparent',
       }}
     />
   )
