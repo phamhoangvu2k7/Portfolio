@@ -171,6 +171,7 @@ function App() {
   const [copied, setCopied] = useState(false)
   const [sending, setSending] = useState(false)
   const [formStatus, setFormStatus] = useState("")
+  const [isError, setIsError] = useState(false)
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('phamvuhoang486@gmail.com')
@@ -181,13 +182,46 @@ function App() {
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSending(true)
-    setTimeout(() => {
+    setIsError(false)
+    setFormStatus("")
+
+    const form = e.target as HTMLFormElement
+    const formData = new FormData(form)
+    
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+    if (!accessKey) {
       setSending(false)
-      setFormStatus("Thank you! Your message has been sent successfully.")
-      const form = e.target as HTMLFormElement
-      form.reset()
-      setTimeout(() => setFormStatus(""), 5000)
-    }, 1500)
+      setIsError(true)
+      setFormStatus("Lỗi: Chưa cấu hình VITE_WEB3FORMS_ACCESS_KEY trong file .env.")
+      return
+    }
+
+    formData.append("access_key", accessKey)
+    formData.append("subject", `Tin nhắn mới từ Portfolio của ${formData.get("name")}`)
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setSending(false)
+        if (data.success) {
+          setIsError(false)
+          setFormStatus("Cảm ơn bạn! Tin nhắn của bạn đã được gửi thành công.")
+          form.reset()
+          setTimeout(() => setFormStatus(""), 5000)
+        } else {
+          setIsError(true)
+          setFormStatus(data.message || "Gặp lỗi khi gửi tin nhắn. Vui lòng thử lại.")
+        }
+      })
+      .catch((err) => {
+        setSending(false)
+        setIsError(true)
+        setFormStatus("Không thể kết nối để gửi tin nhắn. Vui lòng kiểm tra lại mạng.")
+        console.error("Lỗi gửi mail:", err)
+      })
   }
 
   const { scrollYProgress } = useScroll()
@@ -666,7 +700,7 @@ function App() {
                   <i className="fa-brands fa-github"></i>
                   <span>GitHub</span>
                 </a>
-                <a href="https://linkedin.com/in/phamhoangvu" target="_blank" rel="noreferrer" className="social-link" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/vupham2k7/" target="_blank" rel="noreferrer" className="social-link" aria-label="LinkedIn">
                   <i className="fa-brands fa-linkedin-in"></i>
                   <span>LinkedIn</span>
                 </a>
@@ -722,7 +756,7 @@ function App() {
               </button>
               
               {formStatus && (
-                <p className="form-status text-green mt-3">{formStatus}</p>
+                <p className={`form-status mt-3 ${isError ? 'error' : 'text-green'}`}>{formStatus}</p>
               )}
             </form>
           </motion.div>
