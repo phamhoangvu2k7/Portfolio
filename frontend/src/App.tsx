@@ -188,13 +188,7 @@ function App() {
     const form = e.target as HTMLFormElement
     const formData = new FormData(form)
     
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
-    if (!accessKey) {
-      setSending(false)
-      setIsError(true)
-      setFormStatus("Lỗi: Chưa cấu hình VITE_WEB3FORMS_ACCESS_KEY trong file .env.")
-      return
-    }
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "6b4d7c03-c3f1-4249-806c-a59b3b2d7e4e"
 
     formData.append("access_key", accessKey)
     formData.append("subject", `Tin nhắn mới từ Portfolio của ${formData.get("name")}`)
