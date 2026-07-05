@@ -563,7 +563,7 @@ function App() {
                   <div className="showcase-header">
                     <div className="showcase-title-area">
                 <span className="project-badge">FULL-STACK SYSTEM</span>
-                <h3>Nuxt 3 E-Commerce Platform</h3>
+                <h3>E-Commerce</h3>
                 <p className="showcase-subtitle">
                   Complete shopping interface & Admin Management Dashboard with real-time database syncing.
                 </p>
@@ -589,57 +589,6 @@ function App() {
               <span className="tech-tag pinia">Pinia</span>
               <span className="tech-tag cloudinary">Cloudinary</span>
                   </div>
-
-                  {/* Grid of features */}
-                  <div className="showcase-features-grid">
-              <div className="feature-item-card">
-                <div className="feature-icon-wrap bg-purple-10">
-                  <i className="fas fa-chart-line text-purple"></i>
-                </div>
-                <h4>Admin Dashboard</h4>
-                <p>Manage infinite-level category trees, direct Cloudinary media uploads, and soft-deletes (Trash Bin) with recovery options.</p>
-              </div>
-
-              <div className="feature-item-card">
-                <div className="feature-icon-wrap bg-blue-10">
-                  <i className="fas fa-arrows-spin text-blue"></i>
-                </div>
-                <h4>Automatic Cart Merging</h4>
-                <p>Ensures user retention by automatically merging guest-shopper cart items into their main account upon secure login.</p>
-              </div>
-
-              <div className="feature-item-card">
-                <div className="feature-icon-wrap bg-green-10">
-                  <i className="fas fa-warehouse text-green"></i>
-                </div>
-                <h4>Inventory Guard & Restock</h4>
-                <p>Protects business logic with real-time inventory checks at checkout. Instantly restocks quantities back to database on cancellations.</p>
-              </div>
-
-              <div className="feature-item-card">
-                <div className="feature-icon-wrap bg-yellow-10">
-                  <i className="fas fa-shield-halved text-yellow"></i>
-                </div>
-                <h4>JWT & SMTP OTP Recovery</h4>
-                <p>Passwords encrypted with Bcrypt, route guards enforced using JSON Web Tokens, and SMTP Nodemailer OTP codes with 3-minute validation.</p>
-              </div>
-            </div>
-
-            {/* Micro-interactive bottom panel: Code stats */}
-            <div className="showcase-footer">
-              <div className="stat-pill">
-                <span className="dot dot-green"></span>
-                <span>Production Ready</span>
-              </div>
-              <div className="stat-pill">
-                <span className="dot dot-blue"></span>
-                <span>TypeScript Engine</span>
-              </div>
-              <div className="stat-pill">
-                <span className="dot dot-yellow"></span>
-                <span>Vanilla CSS Styling</span>
-              </div>
-          </div>
           </motion.div>
         </Section>
       </section>

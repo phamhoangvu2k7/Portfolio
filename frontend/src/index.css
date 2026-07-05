@@ -38,6 +38,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -45,6 +48,8 @@ body {
   background-color: var(--bg-pure-black);
   color: var(--text-primary);
   line-height: 1.6;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -710,6 +715,11 @@ a {
   line-height: 1.6;
 }
 
+.experience-bullets li strong {
+  color: #a78bfa;
+  font-weight: 600;
+}
+
 .experience-bullets li::before {
   content: '';
   position: absolute;
@@ -1144,6 +1154,10 @@ a {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.95rem;
   color: #fff;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .btn-copy-email {
@@ -1383,9 +1397,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 0;
 }
 
 .tech-tag {
@@ -1615,12 +1627,7 @@ a {
   }
 
   .showcase-tech-stack {
-    margin-bottom: 2rem;
-  }
-
-  .showcase-footer {
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    margin-bottom: 0;
   }
 
 }
@@ -1654,16 +1661,26 @@ a {
   }
 
   .skills-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.75rem;
   }
 
   .skill-card {
     padding: 1rem 0.5rem;
+    min-width: 0;
+  }
+
+  .skill-card span {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .skill-card i {
     font-size: 1.8rem;
+  }
+
+  .email-text {
+    font-size: 0.8rem;
   }
 
   .experience-card { padding: 1.25rem; }
