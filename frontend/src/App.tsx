@@ -134,8 +134,7 @@ function AboutTerminal() {
           </div>
           <div className="terminal-output">
             <p className="highlight">phamhoangvu</p>
-            <p className="dim">// Software Engineer based in Da Nang, Viet Nam</p>
-            <p>Passionate about building stable APIs, scalable backends, and responsive web user interfaces.</p>
+            <p>I'm a second-year student. I love coding, exploring the tech world, and learning new things. I also enjoy reading manga and watching anime.</p>
           </div>
 
           <div className="terminal-line mt-4">
@@ -143,7 +142,7 @@ function AboutTerminal() {
           </div>
           <div className="terminal-output">
             <p className="highlight">Da Nang University of Science and Technology (DUT)</p>
-            <p className="dim">// IT Student & Web Developer Intern</p>
+            <p className="dim">// IT Student</p>
           </div>
 
           <div className="terminal-line mt-4">
@@ -646,6 +645,14 @@ function App() {
                 <a href="https://www.linkedin.com/in/vupham2k7/" target="_blank" rel="noreferrer" className="social-link" aria-label="LinkedIn">
                   <i className="fa-brands fa-linkedin-in"></i>
                   <span>LinkedIn</span>
+                </a>
+                <a href="https://leetcode.com/u/hoangvupham2405/" target="_blank" rel="noreferrer" className="social-link" aria-label="LeetCode">
+                  <i className="devicon-leetcode-plain"></i>
+                  <span>LeetCode</span>
+                </a>
+                <a href="https://www.facebook.com/pham.hoang.vu.591333" target="_blank" rel="noreferrer" className="social-link" aria-label="Facebook">
+                  <i className="fa-brands fa-facebook-f"></i>
+                  <span>Facebook</span>
                 </a>
               </div>
             </div>
