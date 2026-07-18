@@ -1307,15 +1307,15 @@ a {
    FEATURED PROJECT SHOWCASE
    ============================================= */
 .showcase-card {
-  background: rgba(18, 18, 22, 0.7);
+  background: rgba(18, 18, 22, 0.75);
   border: 1px solid var(--border-mid);
-  border-radius: 16px;
-  padding: 2.25rem;
-  max-width: 800px;
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 1000px;
   margin: 0 auto;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   position: relative;
   overflow: hidden;
 }
@@ -1330,16 +1330,17 @@ a {
   background: var(--accent-gradient);
 }
 
-.showcase-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  margin-bottom: 2rem;
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2.5rem;
+  align-items: center;
 }
 
-.showcase-title-area {
-  max-width: 70%;
+.showcase-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .project-badge {
@@ -1355,11 +1356,11 @@ a {
   border: 1px solid rgba(124, 58, 237, 0.2);
 }
 
-.showcase-title-area h3 {
-  font-size: 1.8rem;
+.showcase-info h3 {
+  font-size: 2rem;
   font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
   color: #fff;
 }
@@ -1367,32 +1368,8 @@ a {
 .showcase-subtitle {
   color: var(--text-secondary);
   font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.btn-github-large {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: #fff;
-  color: #000;
-  font-weight: 700;
-  padding: 0.9rem 1.75rem;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-  white-space: nowrap;
-}
-
-.btn-github-large:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25);
-  background: #f4f4f5;
-}
-
-.btn-github-large i {
-  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
 }
 
 .showcase-tech-stack {
@@ -1413,12 +1390,73 @@ a {
 }
 
 .tech-tag.nuxt { color: #00dc82; border-color: rgba(0, 220, 130, 0.2); background: rgba(0, 220, 130, 0.05); }
+.tech-tag.nuxthub { color: #00dc82; border-color: rgba(0, 220, 130, 0.25); background: rgba(0, 220, 130, 0.08); }
 .tech-tag.vue { color: #42b883; border-color: rgba(66, 184, 131, 0.2); background: rgba(66, 184, 131, 0.05); }
-.tech-tag.ts { color: #3178c6; border-color: rgba(49, 120, 198, 0.2); background: rgba(49, 120, 198, 0.05); }
-.tech-tag.mongo { color: #47a248; border-color: rgba(71, 162, 72, 0.2); background: rgba(71, 162, 72, 0.05); }
 .tech-tag.nitro { color: #f472b6; border-color: rgba(244, 114, 182, 0.2); background: rgba(244, 114, 182, 0.05); }
+.tech-tag.ts { color: #3178c6; border-color: rgba(49, 120, 198, 0.2); background: rgba(49, 120, 198, 0.05); }
+.tech-tag.sqlite { color: #38bdf8; border-color: rgba(56, 189, 248, 0.25); background: rgba(56, 189, 248, 0.05); }
+.tech-tag.drizzle { color: #c5f82a; border-color: rgba(197, 248, 42, 0.25); background: rgba(197, 248, 42, 0.05); }
+.tech-tag.cloudflare { color: #f97316; border-color: rgba(249, 115, 22, 0.25); background: rgba(249, 115, 22, 0.05); }
 .tech-tag.pinia { color: #ffe066; border-color: rgba(255, 224, 102, 0.2); background: rgba(255, 224, 102, 0.05); }
-.tech-tag.cloudinary { color: #0070f3; border-color: rgba(0, 112, 243, 0.2); background: rgba(0, 112, 243, 0.05); }
+.tech-tag.resend { color: #e2e8f0; border-color: rgba(226, 232, 240, 0.2); background: rgba(226, 232, 240, 0.05); }
+.tech-tag.zod { color: #60a5fa; border-color: rgba(96, 165, 250, 0.2); background: rgba(96, 165, 250, 0.05); }
+
+.showcase-actions {
+  margin-top: 1.5rem;
+}
+
+.btn-github-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  padding: 0.85rem 1.6rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+}
+
+.btn-github-large:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+  background: #f4f4f5;
+}
+
+.btn-github-large i {
+  font-size: 1.2rem;
+}
+
+/* =============================================
+   SHOWCASE MEDIA PREVIEW CARD
+   ============================================= */
+.showcase-media-card {
+  width: 100%;
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-mid);
+  background: rgba(10, 10, 14, 0.8);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.showcase-media-card:hover {
+  border-color: rgba(167, 139, 250, 0.5);
+  box-shadow: 0 18px 40px rgba(124, 58, 237, 0.3);
+}
+
+.showcase-media-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 13px;
+}
 
 .showcase-features-grid {
   display: grid;
@@ -1522,13 +1560,9 @@ a {
     padding: 2rem;
   }
   
-  .showcase-header {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .showcase-title-area {
-    max-width: 100%;
+  .showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
   
   .btn-github-large {

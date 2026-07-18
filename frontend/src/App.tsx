@@ -553,42 +553,57 @@ function App() {
         <Section>
                 <motion.div
                   className="showcase-card"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  {/* Top row: Project Title & Badges */}
-                  <div className="showcase-header">
-                    <div className="showcase-title-area">
-                <span className="project-badge">FULL-STACK SYSTEM</span>
-                <h3>E-Commerce</h3>
-                <p className="showcase-subtitle">
-                  Complete shopping interface & Admin Management Dashboard with real-time database syncing.
-                </p>
-                    </div>
-                    <a 
-                href="https://github.com/phamhoangvu2k7/Ecommerce" 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="btn-github-large"
-                    >
-                      <i className="fa-brands fa-github"></i>
-                      <span>View Repository</span>
-                    </a>
-                  </div>
+                  <div className="showcase-grid">
+                    {/* Left Column: Info & Actions */}
+                    <div className="showcase-info">
+                      <span className="project-badge">FULL-STACK SYSTEM</span>
+                      <h3>E-Commerce</h3>
+                      <p className="showcase-subtitle">
+                        Complete shopping interface & Admin Management Dashboard with real-time database syncing.
+                      </p>
 
-            {/* Architecture diagram/tech stack tags */}
-                  <div className="showcase-tech-stack">
-              <span className="tech-tag nuxt">Nuxt 3</span>
-              <span className="tech-tag vue">Vue 3</span>
-              <span className="tech-tag nitro">Nitro v3</span>
-              <span className="tech-tag ts">TypeScript</span>
-              <span className="tech-tag mongo">MongoDB</span>
-              <span className="tech-tag pinia">Pinia</span>
-              <span className="tech-tag cloudinary">Cloudinary</span>
+                      {/* Tech stack tags */}
+                      <div className="showcase-tech-stack">
+                        <span className="tech-tag nuxt">Nuxt 3</span>
+                        <span className="tech-tag nuxthub">Nuxt Hub</span>
+                        <span className="tech-tag ts">TypeScript</span>
+                        <span className="tech-tag sqlite">SQLite (D1)</span>
+                        <span className="tech-tag drizzle">Drizzle ORM</span>
+                        <span className="tech-tag cloudflare">Cloudflare</span>
+                      </div>
+
+                      <div className="showcase-actions">
+                        <a 
+                          href="https://github.com/phamhoangvu2k7/Ecommerce" 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="btn-github-large"
+                        >
+                          <i className="fa-brands fa-github"></i>
+                          <span>View Repository</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Right Column: Screenshot Preview Image */}
+                    <motion.div 
+                      className="showcase-media-card"
+                      whileHover={{ y: -4, scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    >
+                      <img 
+                        src={`${import.meta.env.BASE_URL}media/Screenshot 2026-07-18 215453.png`} 
+                        alt="E-Commerce Project Preview" 
+                        className="showcase-media-img"
+                      />
+                    </motion.div>
                   </div>
-          </motion.div>
+                </motion.div>
         </Section>
       </section>
 
