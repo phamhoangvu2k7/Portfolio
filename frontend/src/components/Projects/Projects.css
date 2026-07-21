@@ -1,0 +1,155 @@
+/* Hallmark · Projects Component */
+.projects-section {
+  padding: var(--space-16) var(--space-6);
+  width: min(100%, var(--max-width-content));
+  margin: 0 auto;
+}
+
+/* Featured Spotlight Card */
+.showcase-card {
+  background-color: var(--color-paper-card);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  margin-bottom: var(--space-12);
+  transition: border-color var(--transition-normal);
+}
+
+.showcase-card:hover {
+  border-color: var(--color-paper-border-hover);
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.showcase-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.project-badge-pill {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-accent-subtle);
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+}
+
+.showcase-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  color: var(--color-text);
+}
+
+.showcase-description {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+.showcase-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-paper-subtle);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+}
+
+.showcase-media-figure {
+  margin: 0;
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--color-paper);
+}
+
+.showcase-media-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Secondary Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.project-grid-card {
+  background-color: var(--color-paper-card);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  transition: all var(--transition-fast);
+}
+
+.project-grid-card:hover {
+  background-color: var(--color-paper-elevated);
+  border-color: var(--color-paper-border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.project-card-title {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+.project-card-link {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  transition: color var(--transition-fast);
+}
+
+.project-card-link:hover {
+  color: var(--color-accent);
+}
+
+.project-card-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.project-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+@media (max-width: 850px) {
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}

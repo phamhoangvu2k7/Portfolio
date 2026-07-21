@@ -1,0 +1,101 @@
+/* Hallmark · theme: Studio Dark · genre: technical/editorial
+ * macrostructure: 05-workbench · nav: N5 floating pill · footer: Ft5 statement
+ * states: default · hover · focus · active · disabled · loading · error · success
+ * pre-emit critique: P5 H5 E5 S5 R5 V5
+ */
+
+:root {
+  /* ===== COLOR PALETTE (OKLCH Studio Theme) ===== */
+  --color-paper: oklch(0.14 0.015 250);
+  --color-paper-subtle: oklch(0.17 0.018 250);
+  --color-paper-elevated: oklch(0.21 0.02 250);
+  --color-paper-card: oklch(0.19 0.018 250);
+  --color-paper-border: oklch(0.28 0.025 250);
+  --color-paper-border-hover: oklch(0.38 0.035 250);
+
+  --color-text: oklch(0.96 0.005 250);
+  --color-text-secondary: oklch(0.78 0.01 250);
+  --color-text-muted: oklch(0.58 0.01 250);
+  --color-text-dim: oklch(0.42 0.01 250);
+
+  --color-accent: oklch(0.75 0.17 160);
+  --color-accent-hover: oklch(0.80 0.18 160);
+  --color-accent-subtle: oklch(0.22 0.06 160);
+  --color-accent-border: oklch(0.35 0.09 160);
+  --color-accent-alt: oklch(0.72 0.15 220);
+
+  --color-success: oklch(0.75 0.17 160);
+  --color-error: oklch(0.65 0.20 25);
+  --color-warning: oklch(0.78 0.16 75);
+  --color-focus: oklch(0.75 0.17 160);
+
+  /* ===== TYPOGRAPHY ===== */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-display: 'Outfit', 'Inter', -apple-system, sans-serif;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ===== SPACING SCALE (4-pt system) ===== */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* ===== BORDER RADIUS ===== */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-pill: 9999px;
+
+  /* ===== SHADOWS & DEPTH ===== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px oklch(0.75 0.17 160 / 0.15);
+
+  /* ===== TRANSITIONS & MOTION ===== */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 150ms var(--ease-out-expo);
+  --transition-normal: 250ms var(--ease-out-expo);
+  --transition-slow: 400ms var(--ease-out-expo);
+
+  /* ===== LAYOUT BOUNDS ===== */
+  --max-width-content: 1120px;
+  --max-width-narrow: 768px;
+  --header-height: 4.5rem;
+}
+
+/* Light mode override support if needed in future */
+[data-theme='light'] {
+  --color-paper: oklch(0.98 0.005 250);
+  --color-paper-subtle: oklch(0.95 0.008 250);
+  --color-paper-elevated: oklch(1 0 0);
+  --color-paper-card: oklch(0.96 0.005 250);
+  --color-paper-border: oklch(0.88 0.01 250);
+  --color-paper-border-hover: oklch(0.75 0.02 250);
+
+  --color-text: oklch(0.18 0.015 250);
+  --color-text-secondary: oklch(0.35 0.015 250);
+  --color-text-muted: oklch(0.50 0.01 250);
+  --color-text-dim: oklch(0.68 0.01 250);
+
+  --color-accent: oklch(0.55 0.18 160);
+  --color-accent-hover: oklch(0.48 0.19 160);
+  --color-accent-subtle: oklch(0.92 0.05 160);
+  --color-accent-border: oklch(0.75 0.10 160);
+}

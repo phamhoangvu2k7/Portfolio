@@ -1,0 +1,194 @@
+/* Hallmark · Macrostructure 05: Workbench Hero Layout */
+.hero-workbench {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--header-height) + var(--space-12)) var(--space-6) var(--space-12);
+  width: min(100%, var(--max-width-content));
+  margin: 0 auto;
+}
+
+.hero-workbench-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-12);
+  align-items: center;
+  width: 100%;
+}
+
+.hero-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-paper-subtle);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.hero-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent);
+  box-shadow: 0 0 6px var(--color-accent);
+}
+
+/* Hallmark Typography: Single H1, Roman Display, No Italic Headers */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.03em;
+}
+
+.hero-title-highlight {
+  color: var(--color-accent);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  max-width: 580px;
+  margin-bottom: var(--space-8);
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* 8-state Button Styling: Primary Tactile */
+.btn-primary-tactile {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent);
+  color: oklch(0.12 0.015 250);
+  border: 1px solid var(--color-accent-hover);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary-tactile:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-primary-tactile:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 8-state Button Styling: Secondary Tactile */
+.btn-secondary-tactile {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-medium);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  background-color: var(--color-paper-card);
+  color: var(--color-text);
+  border: 1px solid var(--color-paper-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary-tactile:hover {
+  background-color: var(--color-paper-elevated);
+  border-color: var(--color-paper-border-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary-tactile:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Visual Card Column */
+.hero-visual-card {
+  position: relative;
+  background-color: var(--color-paper-card);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--transition-normal);
+}
+
+.hero-visual-card:hover {
+  border-color: var(--color-paper-border-hover);
+}
+
+.hero-avatar-wrapper {
+  width: 220px;
+  height: 220px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 2px solid var(--color-paper-border);
+  margin-bottom: var(--space-4);
+}
+
+.hero-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-visual-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.hero-visual-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+.hero-visual-role {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Responsive Workbench Layout */
+@media (max-width: 900px) {
+  .hero-workbench-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    margin: 0 auto var(--space-8);
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+}

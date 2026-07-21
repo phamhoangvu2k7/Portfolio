@@ -1,0 +1,187 @@
+/* Hallmark · Contact Component */
+.contact-section {
+  padding: var(--space-16) var(--space-6);
+  width: min(100%, var(--max-width-content));
+  margin: 0 auto;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.contact-card {
+  background-color: var(--color-paper-card);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.contact-card-title {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.contact-card-text {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.email-box {
+  background-color: var(--color-paper-subtle);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.email-box-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.email-box-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+
+}
+
+.email-address {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  word-break: break-all;
+}
+
+.btn-copy-pill {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-semibold);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-copy-pill:hover {
+  background-color: var(--color-accent);
+  color: oklch(0.12 0.015 250);
+}
+
+.socials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.social-pill-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-paper-subtle);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.social-pill-link:hover {
+  background-color: var(--color-paper-elevated);
+  border-color: var(--color-paper-border-hover);
+  color: var(--color-text);
+  transform: translateY(-2px);
+}
+
+/* Contact Form 8-state Styles */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.form-input,
+.form-textarea {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-paper-subtle);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.form-input:hover,
+.form-textarea:hover {
+  border-color: var(--color-paper-border-hover);
+}
+
+.form-input:focus-visible,
+.form-textarea:focus-visible {
+  border-color: var(--color-accent);
+  outline: 2px solid var(--color-focus);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.form-status-msg {
+  font-size: 0.85rem;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+}
+
+.form-status-msg.success {
+  background-color: oklch(0.22 0.06 160);
+  color: var(--color-success);
+  border: 1px solid var(--color-accent-border);
+}
+
+.form-status-msg.error {
+  background-color: oklch(0.20 0.08 25);
+  color: var(--color-error);
+  border: 1px solid oklch(0.40 0.12 25);
+}
+
+@media (max-width: 850px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

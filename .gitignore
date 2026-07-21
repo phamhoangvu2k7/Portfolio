@@ -3,3 +3,4 @@ frontend/dist/
 .env
 *.local
 skill.md
+/rules

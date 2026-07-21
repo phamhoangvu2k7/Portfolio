@@ -6,7 +6,8 @@ interface Particle {
   vx: number
   vy: number
   radius: number
-  opacity: number
+  color: string
+  alpha: number
 }
 
 const ParticleBackground: React.FC = () => {
@@ -21,6 +22,14 @@ const ParticleBackground: React.FC = () => {
 
     let animId: number
     let particles: Particle[] = []
+    const mouse = { x: -1000, y: -1000, radius: 160 }
+
+    const colors = [
+      'rgba(52, 211, 153, ', // Emerald
+      'rgba(45, 212, 191, ', // Teal
+      'rgba(56, 189, 248, ', // Cyan
+      'rgba(129, 140, 248, ', // Indigo
+    ]
 
     const resize = () => {
       canvas.width = window.innerWidth
@@ -28,15 +37,24 @@ const ParticleBackground: React.FC = () => {
     }
 
     const createParticles = () => {
-      const count = Math.min(80, Math.floor((window.innerWidth * window.innerHeight) / 15000))
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: Math.random() * 1.5 + 0.5,
-        opacity: Math.random() * 0.5 + 0.1,
-      }))
+      const count = Math.min(85, Math.floor((window.innerWidth * window.innerHeight) / 12000))
+      particles = Array.from({ length: count }, () => {
+        const colorBase = colors[Math.floor(Math.random() * colors.length)]
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          radius: Math.random() * 2.5 + 1.5,
+          color: colorBase,
+          alpha: Math.random() * 0.5 + 0.35,
+        }
+      })
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX
+      mouse.y = e.clientY
     }
 
     const drawConnections = (p: Particle) => {
@@ -45,14 +63,35 @@ const ParticleBackground: React.FC = () => {
         const dx = p.x - other.x
         const dy = p.y - other.y
         const dist = Math.sqrt(dx * dx + dy * dy)
-        if (dist < 120) {
+        if (dist < 140) {
           ctx.beginPath()
-          ctx.strokeStyle = `rgba(124, 58, 237, ${0.08 * (1 - dist / 120)})`
-          ctx.lineWidth = 0.5
+          const alpha = 0.22 * (1 - dist / 140)
+          ctx.strokeStyle = `rgba(52, 211, 153, ${alpha})`
+          ctx.lineWidth = 0.8
           ctx.moveTo(p.x, p.y)
           ctx.lineTo(other.x, other.y)
           ctx.stroke()
         }
+      }
+
+      // Connection to mouse cursor
+      const mdx = p.x - mouse.x
+      const mdy = p.y - mouse.y
+      const mdist = Math.sqrt(mdx * mdx + mdy * mdy)
+      if (mdist < mouse.radius) {
+        ctx.beginPath()
+        const malpha = 0.45 * (1 - mdist / mouse.radius)
+        ctx.strokeStyle = `rgba(45, 212, 191, ${malpha})`
+        ctx.lineWidth = 1.2
+        ctx.moveTo(p.x, p.y)
+        ctx.lineTo(mouse.x, mouse.y)
+        ctx.stroke()
+
+        // Slight push away from mouse for dynamic movement
+        const angle = Math.atan2(mdy, mdx)
+        const force = (mouse.radius - mdist) / mouse.radius
+        p.x += Math.cos(angle) * force * 1.2
+        p.y += Math.sin(angle) * force * 1.2
       }
     }
 
@@ -72,8 +111,11 @@ const ParticleBackground: React.FC = () => {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(167, 139, 250, ${p.opacity})`
+        ctx.fillStyle = `${p.color}${p.alpha})`
+        ctx.shadowBlur = 10
+        ctx.shadowColor = 'rgba(52, 211, 153, 0.6)'
         ctx.fill()
+        ctx.shadowBlur = 0
       }
 
       animId = requestAnimationFrame(animate)
@@ -83,14 +125,15 @@ const ParticleBackground: React.FC = () => {
     createParticles()
     animate()
 
-    const handleResize = () => {
+    window.addEventListener('resize', () => {
       resize()
       createParticles()
-    }
-    window.addEventListener('resize', handleResize)
+    })
+    window.addEventListener('mousemove', handleMouseMove)
 
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', resize)
+      window.removeEventListener('mousemove', handleMouseMove)
       cancelAnimationFrame(animId)
     }
   }, [])
@@ -101,7 +144,7 @@ const ParticleBackground: React.FC = () => {
       style={{
         position: 'fixed',
         inset: 0,
-        zIndex: -3,
+        zIndex: 0,
         pointerEvents: 'none',
         background: 'transparent',
       }}

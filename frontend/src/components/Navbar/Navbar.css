@@ -1,0 +1,157 @@
+/* Hallmark · Nav Archetype N5: Floating Pill */
+.nav-floating-container {
+  position: fixed;
+  top: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92%, var(--max-width-content));
+  height: var(--header-height);
+  padding: 0 var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 500;
+  background-color: oklch(0.19 0.018 250 / 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.nav-floating-container:hover {
+  border-color: var(--color-paper-border-hover);
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.1rem;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nav-brand-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 10px var(--color-accent);
+}
+
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.nav-link-item {
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.nav-link-item:hover,
+.nav-link-item.active {
+  color: var(--color-text);
+  background-color: var(--color-paper-subtle);
+}
+
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* 8-state Button Styling: Download CV */
+.btn-cv-pill {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-semibold);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-cv-pill:hover {
+  background-color: var(--color-accent);
+  color: oklch(0.12 0.015 250);
+  border-color: var(--color-accent-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-cv-pill:active {
+  transform: scale(0.97);
+}
+
+/* Mobile Hamburger Toggle */
+.nav-mobile-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-mobile-toggle:hover {
+  border-color: var(--color-text-muted);
+}
+
+/* Mobile Menu Drawer */
+.nav-mobile-drawer {
+  position: fixed;
+  top: calc(var(--space-4) + var(--header-height) + var(--space-2));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92%, var(--max-width-narrow));
+  background-color: var(--color-paper-elevated);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  z-index: 499;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nav-mobile-drawer a {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.nav-mobile-drawer a:hover {
+  background-color: var(--color-paper-subtle);
+  color: var(--color-text);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .nav-links-desktop {
+    display: none;
+  }
+  .nav-mobile-toggle {
+    display: flex;
+  }
+}

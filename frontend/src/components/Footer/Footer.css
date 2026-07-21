@@ -1,0 +1,84 @@
+/* Hallmark · Footer Archetype Ft5: Statement Footer */
+.site-footer {
+  border-top: 1px solid var(--color-paper-border);
+  padding: var(--space-12) var(--space-6) var(--space-8);
+  background-color: var(--color-paper-subtle);
+  margin-top: var(--space-16);
+}
+
+.footer-content {
+  width: min(100%, var(--max-width-content));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.footer-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.footer-statement {
+  max-width: 450px;
+}
+
+.footer-brand-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.footer-statement-text {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.footer-nav-col {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.footer-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-group-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-1);
+}
+
+.footer-nav-group a {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.footer-nav-group a:hover {
+  color: var(--color-accent);
+}
+
+.footer-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-paper-border);
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+  flex-wrap: wrap;
+}
