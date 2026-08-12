@@ -118,73 +118,71 @@ export default function Contact() {
 
         {/* Contact form column */}
         <ScrollReveal direction="right" delay={0.2}>
-          <TiltCard maxTilt={8} glareOpacity={0.2} scaleOnHover={1.01}>
-            <div className="contact-card">
-              <h3 className="contact-card-title">Send a Message</h3>
+          <div className="contact-card">
+            <h3 className="contact-card-title">Send a Message</h3>
 
-              <form onSubmit={handleSendMessage} className="contact-form">
-                <div className="form-field">
-                  <label htmlFor="name-input" className="form-label">Your Name</label>
-                  <input
-                    id="name-input"
-                    type="text"
-                    name="name"
-                    required
-                    placeholder="e.g. Alex Smith"
-                    className="form-input"
-                  />
-                </div>
+            <form onSubmit={handleSendMessage} className="contact-form">
+              <div className="form-field">
+                <label htmlFor="name-input" className="form-label">Your Name</label>
+                <input
+                  id="name-input"
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="e.g. Alex Smith"
+                  className="form-input"
+                />
+              </div>
 
-                <div className="form-field">
-                  <label htmlFor="email-input" className="form-label">Email Address</label>
-                  <input
-                    id="email-input"
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="e.g. alex@example.com"
-                    className="form-input"
-                  />
-                </div>
+              <div className="form-field">
+                <label htmlFor="email-input" className="form-label">Email Address</label>
+                <input
+                  id="email-input"
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="e.g. alex@example.com"
+                  className="form-input"
+                />
+              </div>
 
-                <div className="form-field">
-                  <label htmlFor="message-input" className="form-label">Message</label>
-                  <textarea
-                    id="message-input"
-                    name="message"
-                    rows={4}
-                    required
-                    placeholder="Hi Vu, I'd like to talk about..."
-                    className="form-textarea"
-                  ></textarea>
-                </div>
+              <div className="form-field">
+                <label htmlFor="message-input" className="form-label">Message</label>
+                <textarea
+                  id="message-input"
+                  name="message"
+                  rows={4}
+                  required
+                  placeholder="Hi Vu, I'd like to talk about..."
+                  className="form-textarea"
+                ></textarea>
+              </div>
 
-                <MagneticWrapper strength={0.2}>
-                  <RippleEffect style={{ width: '100%' }}>
-                    <button
-                      type="submit"
-                      disabled={sending}
-                      className="btn-primary-tactile"
-                      style={{ width: '100%', justifyContent: 'center' }}
-                    >
-                      <span>{sending ? 'Sending...' : 'Send Message'}</span>
-                      <i className="fas fa-paper-plane" aria-hidden="true"></i>
-                    </button>
-                  </RippleEffect>
-                </MagneticWrapper>
-
-                {formStatus && (
-                  <div
-                    className={`form-status-msg ${isError ? 'error' : 'success'}`}
-                    role="status"
-                    aria-live="polite"
+              <MagneticWrapper strength={0.2}>
+                <RippleEffect style={{ width: '100%' }}>
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="btn-primary-tactile"
+                    style={{ width: '100%', justifyContent: 'center' }}
                   >
-                    {formStatus}
-                  </div>
-                )}
-              </form>
-            </div>
-          </TiltCard>
+                    <span>{sending ? 'Sending...' : 'Send Message'}</span>
+                    <i className="fas fa-paper-plane" aria-hidden="true"></i>
+                  </button>
+                </RippleEffect>
+              </MagneticWrapper>
+
+              {formStatus && (
+                <div
+                  className={`form-status-msg ${isError ? 'error' : 'success'}`}
+                  role="status"
+                  aria-live="polite"
+                >
+                  {formStatus}
+                </div>
+              )}
+            </form>
+          </div>
         </ScrollReveal>
       </div>
     </section>

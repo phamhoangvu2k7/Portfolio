@@ -5,6 +5,7 @@ export default function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
   const [isTextHovered, setIsTextHovered] = useState(false)
+  const [isInputHovered, setIsInputHovered] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
 
   // Mouse Coordinates
@@ -35,15 +36,19 @@ export default function CustomCursor() {
       const target = e.target as HTMLElement | null
       if (!target) return
 
-      const isInteractive = Boolean(
-        target.closest('a, button, input, textarea, select, [role="button"], .interactive, [data-cursor="pointer"]')
+      const isInput = Boolean(
+        target.closest('input, textarea, select, [contenteditable="true"]')
       )
-      const isText = Boolean(
+      const isInteractive = !isInput && Boolean(
+        target.closest('a, button, [role="button"], .interactive, [data-cursor="pointer"]')
+      )
+      const isText = !isInput && !isInteractive && Boolean(
         target.closest('h1, h2, h3, p, code, .terminal-content, [data-cursor="text"]')
       )
 
+      setIsInputHovered(isInput)
       setIsHovered(isInteractive)
-      setIsTextHovered(!isInteractive && isText)
+      setIsTextHovered(isText)
     }
 
     window.addEventListener('mousemove', handleMouseMove)
@@ -73,7 +78,7 @@ export default function CustomCursor() {
         }}
         animate={{
           scale: isClicked ? 0.5 : isHovered ? 0 : 1,
-          opacity: isTextHovered ? 0.3 : 1,
+          opacity: isInputHovered ? 0 : isTextHovered ? 0.3 : 1,
         }}
         transition={{ duration: 0.15 }}
       />
@@ -88,6 +93,7 @@ export default function CustomCursor() {
         animate={{
           scale: isClicked ? 0.8 : isHovered ? 1.8 : isTextHovered ? 1.4 : 1,
           borderWidth: isHovered ? '2px' : '1.5px',
+          opacity: isInputHovered ? 0 : 1,
         }}
         transition={{ type: 'spring', damping: 30, stiffness: 200 }}
       />

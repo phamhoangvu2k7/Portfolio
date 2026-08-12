@@ -334,6 +334,12 @@ body.custom-cursor-active [role="button"] {
   cursor: none !important;
 }
 
+body.custom-cursor-active input,
+body.custom-cursor-active textarea,
+body.custom-cursor-active [contenteditable="true"] {
+  cursor: text !important;
+}
+
 .custom-cursor-dot {
   position: fixed;
   top: 0;
