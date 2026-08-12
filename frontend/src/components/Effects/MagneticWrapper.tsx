@@ -1,11 +1,11 @@
-import React, { useRef } from 'react'
+import { useRef, type ReactNode, type CSSProperties, type MouseEvent } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 interface MagneticWrapperProps {
-  children: React.ReactNode
+  children: ReactNode
   strength?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 export default function MagneticWrapper({
@@ -24,7 +24,7 @@ export default function MagneticWrapper({
   const springX = useSpring(x, springConfig)
   const springY = useSpring(y, springConfig)
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return
     const { left, top, width, height } = ref.current.getBoundingClientRect()
     const centerX = left + width / 2

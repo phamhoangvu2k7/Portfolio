@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="footer-statement">
             <span className="footer-brand-title">phamhoangvu</span>
             <p className="footer-statement-text">
-              Software Engineer & IT student building responsive, high-performance web applications and backend APIs.
+              2nd-year IT student passionate about building clean web applications and backend APIs.
             </p>
           </div>
 
@@ -37,7 +37,7 @@ export default function Footer() {
 
         <div className="footer-bottom-row">
           <p>&copy; {year} Pham Hoang Vu. All rights reserved.</p>
-          <p>Built with React, TypeScript & Hallmark UI Standards</p>
+          <p>Built with React, TypeScript & Framer Motion</p>
         </div>
       </div>
     </footer>

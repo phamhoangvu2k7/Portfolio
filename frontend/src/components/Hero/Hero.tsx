@@ -1,4 +1,4 @@
-import React from 'react'
+import type { MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import AnimatedText from '../Effects/AnimatedText'
 import TiltCard from '../Effects/TiltCard'
@@ -9,7 +9,7 @@ import './Hero.css'
 const CV_DOWNLOAD_URL = 'https://drive.google.com/file/d/1J8R8q5fBbhc-kB6CPKldpkm4b-G5fN6H/view?usp=drive_link'
 
 export default function Hero() {
-  const handleDownloadCV = (e: React.MouseEvent) => {
+  const handleDownloadCV = (e: MouseEvent) => {
     e.preventDefault()
     window.open(CV_DOWNLOAD_URL, '_blank')
   }
@@ -27,13 +27,13 @@ export default function Hero() {
               <span className="pulse-indicator">
                 <span className="hero-status-dot"></span>
               </span>
-              <span>Available for backend & full-stack roles</span>
+              <span>Seeking Backend / Full-Stack Internships</span>
             </div>
           </MagneticWrapper>
 
           <div className="hero-title-wrapper" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
             <AnimatedText
-              text="Engineering scalable web services & clean APIs"
+              text="Building clean web applications & backend APIs"
               el="h1"
               className="hero-title"
               staggerDuration={0.04}
@@ -41,7 +41,7 @@ export default function Hero() {
           </div>
 
           <p className="hero-subtitle">
-            Hi, I'm <strong>Pham Hoang Vu</strong> — an IT student at DUT specializing in Node.js, TypeScript, PostgreSQL, and modern web architectures with a focus on code quality and user experience.
+            Hi, I'm <strong>Pham Hoang Vu</strong> — a 2nd-year IT student at DUT passionate about web development, building APIs with Node.js, TypeScript, Express, and PostgreSQL.
           </p>
 
           <div className="hero-cta-group">

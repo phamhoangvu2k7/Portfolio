@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react'
+import { useState, useLayoutEffect, type ReactNode, type CSSProperties, type MouseEvent } from 'react'
 
 interface Ripple {
   x: number
@@ -8,11 +8,11 @@ interface Ripple {
 }
 
 interface RippleEffectProps {
-  children: React.ReactNode
+  children: ReactNode
   color?: string
   className?: string
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
-  style?: React.CSSProperties
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+  style?: CSSProperties
 }
 
 export default function RippleEffect({
@@ -33,7 +33,7 @@ export default function RippleEffect({
     }
   }, [ripples])
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
     const size = Math.max(rect.width, rect.height) * 2
     const x = e.clientX - rect.left - size / 2

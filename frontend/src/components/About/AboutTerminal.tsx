@@ -9,7 +9,7 @@ export default function AboutTerminal() {
       <ScrollReveal direction="up" viewportAmount={0.2}>
         <div className="section-header">
           <AnimatedText text="System Profile" el="h2" gradient />
-          <p>A peek into my background, setup, and engineering philosophy</p>
+          <p>A quick overview of my background, education, and development focus</p>
         </div>
       </ScrollReveal>
 
@@ -29,7 +29,7 @@ export default function AboutTerminal() {
               </div>
               <div className="terminal-output">
                 <p className="highlight">phamhoangvu</p>
-                <p>Second-year IT student at DUT. Dedicated to backend engineering, exploring robust API design, database optimizations, and modern full-stack workflows.</p>
+                <p>2nd-year IT student at DUT (Danang University of Technology). Passionate about backend development, building RESTful APIs, and learning web technologies through hands-on projects.</p>
               </div>
 
               <div className="terminal-line">
@@ -37,7 +37,7 @@ export default function AboutTerminal() {
               </div>
               <div className="terminal-output">
                 <p className="highlight">Da Nang University of Science and Technology (DUT)</p>
-                <p className="dim">// Major: Information Technology</p>
+                <p className="dim">// Major: Information Technology (2nd Year)</p>
               </div>
 
               <div className="terminal-line">
@@ -45,9 +45,9 @@ export default function AboutTerminal() {
               </div>
               <div className="terminal-output text-green">
                 <p>&#123;</p>
-                <p className="indent">"codeQuality": "Clean & self-documenting",</p>
-                <p className="indent">"focus": "Performance & User Experience",</p>
-                <p className="indent">"learning": "Continuous exploration of web architectures"</p>
+                <p className="indent">"codeStyle": "Clean & readable",</p>
+                <p className="indent">"focus": "Backend & Web Development",</p>
+                <p className="indent">"mindset": "Always eager to learn & build"</p>
                 <p>&#125;</p>
               </div>
             </div>

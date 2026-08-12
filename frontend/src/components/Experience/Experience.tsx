@@ -10,7 +10,7 @@ export default function Experience() {
       <ScrollReveal direction="up">
         <div className="section-header">
           <AnimatedText text="Experience" el="h2" gradient />
-          <p>Professional engineering roles and backend software development</p>
+          <p>Internships and practical web development experience</p>
         </div>
       </ScrollReveal>
 

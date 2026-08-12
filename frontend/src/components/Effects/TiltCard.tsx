@@ -1,13 +1,13 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState, type ReactNode, type CSSProperties, type MouseEvent } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 interface TiltCardProps {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   maxTilt?: number
   glareOpacity?: number
   scaleOnHover?: number
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 export default function TiltCard({
@@ -35,7 +35,7 @@ export default function TiltCard({
   const glareX = useTransform(mouseX, [-0.5, 0.5], ['0%', '100%'])
   const glareY = useTransform(mouseY, [-0.5, 0.5], ['0%', '100%'])
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return
     const rect = containerRef.current.getBoundingClientRect()
     if (!rect.width || !rect.height) return

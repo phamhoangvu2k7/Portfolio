@@ -31,7 +31,7 @@ export default function Skills() {
       <ScrollReveal direction="up">
         <div className="section-header">
           <AnimatedText text="Skills & Tech Stack" el="h2" gradient />
-          <p>Languages, frameworks, and tooling I utilize across projects</p>
+          <p>Technologies and tools I have learned and worked with in my projects</p>
         </div>
       </ScrollReveal>
 
@@ -55,7 +55,7 @@ export default function Skills() {
         </div>
 
         <div>
-          <h3 className="skills-group-title">DevOps & Tools</h3>
+          <h3 className="skills-group-title">Tools & Workflow</h3>
           <div className="skills-grid">
             {devopsAndTools.map((tech, i) => (
               <SkillCard key={tech.label} tech={tech} index={i} />

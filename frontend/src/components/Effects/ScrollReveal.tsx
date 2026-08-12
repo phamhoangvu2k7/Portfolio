@@ -1,10 +1,10 @@
-import React from 'react'
+import type { ReactNode, CSSProperties } from 'react'
 import { motion } from 'framer-motion'
 
 type Direction = 'up' | 'down' | 'left' | 'right' | 'zoom' | 'fade'
 
 interface ScrollRevealProps {
-  children: React.ReactNode
+  children: ReactNode
   direction?: Direction
   delay?: number
   duration?: number
@@ -12,7 +12,7 @@ interface ScrollRevealProps {
   viewportAmount?: number
   once?: boolean
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 export default function ScrollReveal({
@@ -69,7 +69,7 @@ export default function ScrollReveal({
 
 // Container for Staggering Multiple Children
 interface StaggerContainerProps {
-  children: React.ReactNode
+  children: ReactNode
   staggerDelay?: number
   delay?: number
   className?: string

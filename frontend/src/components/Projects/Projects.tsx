@@ -12,7 +12,7 @@ export default function Projects() {
       <ScrollReveal direction="up">
         <div className="section-header">
           <AnimatedText text="Featured Work" el="h2" gradient />
-          <p>Full-stack systems, backend services, and web applications</p>
+          <p>Web applications and personal projects I've built</p>
         </div>
       </ScrollReveal>
 
@@ -22,10 +22,10 @@ export default function Projects() {
           <div className="showcase-card">
             <div className="showcase-grid">
               <div className="showcase-info">
-                <span className="project-badge-pill">FULL-STACK SYSTEM</span>
+                <span className="project-badge-pill">FULL-STACK PROJECT</span>
                 <h3 className="showcase-title">E-Commerce System</h3>
                 <p className="showcase-description">
-                  Complete shopping interface & Admin Management Dashboard with real-time database syncing, deployed on Cloudflare network infrastructure.
+                  An e-commerce web application featuring a storefront and Admin Dashboard, built with SQLite (D1) and Drizzle ORM, deployed on Cloudflare.
                 </p>
 
                 <div className="showcase-tags">

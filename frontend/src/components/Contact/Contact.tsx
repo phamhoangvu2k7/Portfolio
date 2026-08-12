@@ -61,7 +61,7 @@ export default function Contact() {
       <ScrollReveal direction="up">
         <div className="section-header">
           <AnimatedText text="Get in Touch" el="h2" gradient />
-          <p>Open for backend engineer roles, project inquiries, and collaborations</p>
+          <p>Open for internship opportunities, project inquiries, and collaborations</p>
         </div>
       </ScrollReveal>
 

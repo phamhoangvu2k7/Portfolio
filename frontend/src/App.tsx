@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, type MouseEvent } from 'react'
 import { motion, useScroll, useSpring, useMotionValue } from 'framer-motion'
 
 import CustomCursor from './components/Effects/CustomCursor'
@@ -28,7 +28,7 @@ export default function App() {
   const springX = useSpring(mouseX, { stiffness: 100, damping: 22 })
   const springY = useSpring(mouseY, { stiffness: 100, damping: 22 })
 
-  function handleMouseMove({ clientX, clientY }: React.MouseEvent) {
+  function handleMouseMove({ clientX, clientY }: MouseEvent) {
     mouseX.set(clientX)
     mouseY.set(clientY)
   }
