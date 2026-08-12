@@ -1,7 +1,8 @@
-import { useState, useRef } from 'react'
-import { Player } from '@lottiefiles/react-lottie-player'
+import React, { useState } from 'react'
 import { motion, useScroll, useSpring, useMotionValue } from 'framer-motion'
 
+import CustomCursor from './components/Effects/CustomCursor'
+import LoadingScreen from './components/Effects/LoadingScreen'
 import ParticleBackground from './components/ParticleBackground'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
@@ -16,7 +17,6 @@ import './index.css'
 
 export default function App() {
   const [loadingComplete, setLoadingComplete] = useState(false)
-  const overlayRef = useRef<HTMLDivElement>(null)
 
   // Scroll Progress Bar
   const { scrollYProgress } = useScroll()
@@ -33,15 +33,11 @@ export default function App() {
     mouseY.set(clientY)
   }
 
-  const handleLottieComplete = () => {
-    if (overlayRef.current) {
-      overlayRef.current.classList.add('hidden')
-      setTimeout(() => setLoadingComplete(true), 600)
-    }
-  }
-
   return (
     <div onMouseMove={handleMouseMove} style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
+      {/* Custom Hardware-Accelerated Dual Cursor */}
+      <CustomCursor />
+
       {/* Top Scroll Progress Line */}
       <motion.div className="scroll-progress-bar" style={{ scaleX }} />
 
@@ -63,21 +59,9 @@ export default function App() {
       {/* Interactive Canvas Constellation Particles */}
       <ParticleBackground />
 
-      {/* Lottie Initial Loading Overlay */}
+      {/* Initial Loading Overlay */}
       {!loadingComplete && (
-        <div id="loading-overlay" ref={overlayRef}>
-          <Player
-            src={`${import.meta.env.BASE_URL}Hello.json`}
-            background="transparent"
-            speed={1.5}
-            style={{ width: '360px', height: '360px' }}
-            autoplay
-            keepLastFrame
-            onEvent={(event) => {
-              if (event === 'complete') handleLottieComplete()
-            }}
-          />
-        </div>
+        <LoadingScreen onComplete={() => setLoadingComplete(true)} />
       )}
 
       {/* Main Page Content */}

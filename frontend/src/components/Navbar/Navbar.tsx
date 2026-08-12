@@ -1,17 +1,20 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import MagneticWrapper from '../Effects/MagneticWrapper'
 import './Navbar.css'
 
-const CV_DOWNLOAD_URL = 'https://drive.google.com/uc?export=download&id=18rhFjj3gVYAUOwtzz98tLEr0FJ0bKH00'
+const navItems = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'contact', label: 'Contact' },
+]
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
-
-  const handleDownloadCV = (e: React.MouseEvent) => {
-    e.preventDefault()
-    window.open(CV_DOWNLOAD_URL, '_blank')
-  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -42,30 +45,35 @@ export default function Navbar() {
   return (
     <>
       <header className="nav-floating-container" aria-label="Main Navigation">
-        <a href="#home" className="nav-brand" aria-label="Pham Hoang Vu Homepage">
-          <span className="nav-brand-dot"></span>
-          <span>phamhoangvu</span>
-        </a>
+        <MagneticWrapper strength={0.3}>
+          <a href="#home" className="nav-brand" aria-label="Pham Hoang Vu Homepage">
+            <span className="nav-brand-dot"></span>
+            <span>phamhoangvu</span>
+          </a>
+        </MagneticWrapper>
 
         <nav className="nav-links-desktop" aria-label="Desktop Nav">
-          <a href="#home" className={`nav-link-item ${activeSection === 'home' ? 'active' : ''}`}>Home</a>
-          <a href="#about" className={`nav-link-item ${activeSection === 'about' ? 'active' : ''}`}>About</a>
-          <a href="#skills" className={`nav-link-item ${activeSection === 'skills' ? 'active' : ''}`}>Skills</a>
-          <a href="#experience" className={`nav-link-item ${activeSection === 'experience' ? 'active' : ''}`}>Experience</a>
-          <a href="#projects" className={`nav-link-item ${activeSection === 'projects' ? 'active' : ''}`}>Projects</a>
-          <a href="#contact" className={`nav-link-item ${activeSection === 'contact' ? 'active' : ''}`}>Contact</a>
+          {navItems.map((item) => (
+            <MagneticWrapper key={item.id} strength={0.25}>
+              <a
+                href={`#${item.id}`}
+                className={`nav-link-item ${activeSection === item.id ? 'active' : ''}`}
+                style={{ position: 'relative' }}
+              >
+                {item.label}
+                {activeSection === item.id && (
+                  <motion.div
+                    layoutId="activeNavPill"
+                    className="nav-active-spring-indicator"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            </MagneticWrapper>
+          ))}
         </nav>
 
         <div className="nav-right-actions">
-          <button
-            onClick={handleDownloadCV}
-            className="btn-cv-pill"
-            aria-label="Download Resume / CV"
-          >
-            <i className="fas fa-arrow-down" aria-hidden="true"></i>
-            <span>Resume</span>
-          </button>
-
           <button
             className="nav-mobile-toggle"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -87,12 +95,11 @@ export default function Navbar() {
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             aria-label="Mobile Navigation"
           >
-            <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
-            <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
-            <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+            {navItems.map((item) => (
+              <a key={item.id} href={`#${item.id}`} onClick={() => setMenuOpen(false)}>
+                {item.label}
+              </a>
+            ))}
           </motion.div>
         )}
       </AnimatePresence>

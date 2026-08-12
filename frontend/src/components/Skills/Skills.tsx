@@ -1,4 +1,6 @@
 import SkillCard, { type TechItem } from './SkillCard'
+import AnimatedText from '../Effects/AnimatedText'
+import ScrollReveal from '../Effects/ScrollReveal'
 import './Skills.css'
 
 const languagesAndFrameworks: TechItem[] = [
@@ -26,10 +28,12 @@ const devopsAndTools: TechItem[] = [
 export default function Skills() {
   return (
     <section id="skills" className="skills-section" aria-label="Skills and Technologies">
-      <div className="section-header">
-        <h2>Skills & Tech Stack</h2>
-        <p>Languages, frameworks, and tooling I utilize across projects</p>
-      </div>
+      <ScrollReveal direction="up">
+        <div className="section-header">
+          <AnimatedText text="Skills & Tech Stack" el="h2" gradient />
+          <p>Languages, frameworks, and tooling I utilize across projects</p>
+        </div>
+      </ScrollReveal>
 
       <div className="skills-wrapper">
         <div>
