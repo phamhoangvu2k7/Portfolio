@@ -4,3 +4,4 @@ frontend/dist/
 *.local
 skill.md
 /rules
+.agents

@@ -5,9 +5,8 @@ import './Skills.css'
 
 const languagesAndFrameworks: TechItem[] = [
   { label: 'TypeScript', icon: 'devicon-typescript-plain colored' },
-  { label: 'JavaScript', icon: 'devicon-javascript-plain colored' },
   { label: 'Java', icon: 'devicon-java-plain colored' },
-  { label: 'Node.js', icon: 'devicon-nodejs-plain colored' },
+  { label: 'Spring Boot', icon: 'devicon-spring-plain colored' },
   { label: 'Express', icon: 'devicon-express-original' },
   { label: 'Nuxt.js', icon: 'devicon-nuxtjs-plain colored' },
 ]
