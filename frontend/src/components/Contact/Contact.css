@@ -150,6 +150,12 @@
   transition: border-color var(--transition-fast), background-color var(--transition-fast);
 }
 
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--color-placeholder);
+  opacity: 1;
+}
+
 .form-input:hover,
 .form-textarea:hover {
   border-color: var(--color-paper-border-hover);

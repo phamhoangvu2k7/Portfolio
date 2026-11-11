@@ -21,27 +21,28 @@ export default function Hero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="hero-copy-column"
         >
           <MagneticWrapper strength={0.2}>
             <div className="hero-meta-badge">
               <span className="pulse-indicator">
                 <span className="hero-status-dot"></span>
               </span>
-              <span>Seeking Backend / Full-Stack Internships</span>
+              <span>Available for Internship &amp; Full-Time Opportunities</span>
             </div>
           </MagneticWrapper>
 
-          <div className="hero-title-wrapper" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+          <div className="hero-title-wrapper">
             <AnimatedText
-              text="Building clean web applications & backend APIs"
+              text="Architecting High-Throughput APIs & Distributed Web Systems"
               el="h1"
               className="hero-title"
-              staggerDuration={0.04}
+              staggerDuration={0.035}
             />
           </div>
 
           <p className="hero-subtitle">
-            Hi, I'm <strong>Pham Hoang Vu</strong> — a 2nd-year IT student at DUT passionate about web development, building APIs with Node.js, TypeScript, Express, and PostgreSQL.
+            Hi, I'm <strong>Pham Hoang Vu</strong> — a Software Engineer specializing in backend architectures, clean RESTful APIs, relational schema design, and edge-native distributed systems with Node.js, TypeScript, and&nbsp;Cloudflare.
           </p>
 
           <div className="hero-cta-group">
@@ -54,7 +55,7 @@ export default function Hero() {
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                 >
-                  <span>View Projects</span>
+                  <span>Explore Projects</span>
                   <i className="fas fa-arrow-right" aria-hidden="true"></i>
                 </motion.a>
               </RippleEffect>
@@ -71,35 +72,68 @@ export default function Hero() {
                   aria-label="Download Resume"
                 >
                   <i className="fas fa-file-arrow-down" aria-hidden="true"></i>
-                  <span>Get Resume</span>
+                  <span>Download Resume</span>
                 </motion.button>
               </RippleEffect>
             </MagneticWrapper>
           </div>
         </motion.div>
 
-        <TiltCard maxTilt={12} glareOpacity={0.3} scaleOnHover={1.04}>
+        <TiltCard maxTilt={10} glareOpacity={0.25} scaleOnHover={1.03}>
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 15 }}
+            initial={{ opacity: 0, scale: 0.94, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="hero-visual-card"
+            className="hero-workbench-card"
           >
-            <motion.div
-              className="hero-avatar-wrapper"
-              whileHover={{ scale: 1.05, rotate: 1 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-            >
-              <img
-                src={`${import.meta.env.BASE_URL}avatar.jpg`}
-                alt="Pham Hoang Vu Avatar"
-                className="hero-avatar-img"
-              />
-            </motion.div>
+            {/* Terminal Window Chrome */}
+            <div className="workbench-card-header">
+              <div className="workbench-card-dots">
+                <span className="dot dot-red"></span>
+                <span className="dot dot-yellow"></span>
+                <span className="dot dot-green"></span>
+              </div>
+              <span className="workbench-card-title">engineer.profile</span>
+              <span className="workbench-status-pill">LIVE</span>
+            </div>
 
-            <div className="hero-visual-info">
-              <span className="hero-visual-name">Pham Hoang Vu</span>
-              <span className="hero-visual-role">Software Engineer / DUT Student</span>
+            <div className="workbench-card-body">
+              <div className="hero-avatar-wrapper">
+                <img
+                  src={`${import.meta.env.BASE_URL}avatar.jpg`}
+                  alt="Pham Hoang Vu — Software Engineer"
+                  className="hero-avatar-img"
+                  width="200"
+                  height="200"
+                  loading="eager"
+                />
+              </div>
+
+              <div className="hero-visual-info">
+                <span className="hero-visual-name">Pham Hoang Vu</span>
+                <span className="hero-visual-role">Backend &amp; Full-Stack Systems Engineer</span>
+                
+                <div className="hero-location-chip">
+                  <i className="fas fa-location-dot" aria-hidden="true"></i>
+                  <span>Da Nang, Vietnam (UTC+7)</span>
+                </div>
+              </div>
+
+              {/* Engineering Specs List */}
+              <div className="workbench-metrics-list">
+                <div className="metric-row">
+                  <span className="metric-key">Runtime</span>
+                  <span className="metric-val">Node.js · Cloudflare Edge</span>
+                </div>
+                <div className="metric-row">
+                  <span className="metric-key">Architecture</span>
+                  <span className="metric-val">REST APIs · RBAC Secure</span>
+                </div>
+                <div className="metric-row">
+                  <span className="metric-key">Database</span>
+                  <span className="metric-val">PostgreSQL · SQLite (D1)</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </TiltCard>

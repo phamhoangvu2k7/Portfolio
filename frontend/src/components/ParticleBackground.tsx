@@ -25,6 +25,11 @@ const ParticleBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
+    // Respect reduced motion and mobile performance diet
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 768) {
+      return
+    }
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -49,7 +54,7 @@ const ParticleBackground: React.FC = () => {
     }
 
     const createParticles = () => {
-      const count = Math.min(90, Math.floor((window.innerWidth * window.innerHeight) / 11000))
+      const count = Math.min(45, Math.floor((window.innerWidth * window.innerHeight) / 22000))
       particles = Array.from({ length: count }, () => {
         const colorBase = colors[Math.floor(Math.random() * colors.length)]
         const rad = Math.random() * 2.5 + 1.5

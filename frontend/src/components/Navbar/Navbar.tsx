@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import MagneticWrapper from '../Effects/MagneticWrapper'
 import './Navbar.css'
 
+const CV_DOWNLOAD_URL = 'https://drive.google.com/file/d/1J8R8q5fBbhc-kB6CPKldpkm4b-G5fN6H/view?usp=drive_link'
+
 const navItems = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
@@ -20,9 +22,18 @@ export default function Navbar() {
     const handleResize = () => {
       if (window.innerWidth > 768) setMenuOpen(false)
     }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && menuOpen) {
+        setMenuOpen(false)
+      }
+    }
     window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [menuOpen])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,6 +85,19 @@ export default function Navbar() {
         </nav>
 
         <div className="nav-right-actions">
+          <MagneticWrapper strength={0.3}>
+            <a
+              href={CV_DOWNLOAD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-cv-pill"
+              aria-label="Download Resume"
+            >
+              <i className="fas fa-file-arrow-down" aria-hidden="true"></i>
+              <span>Resume</span>
+            </a>
+          </MagneticWrapper>
+
           <button
             className="nav-mobile-toggle"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -100,6 +124,16 @@ export default function Navbar() {
                 {item.label}
               </a>
             ))}
+            <a
+              href={CV_DOWNLOAD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mobile-resume-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              <i className="fas fa-file-arrow-down" style={{ marginRight: '8px' }} aria-hidden="true"></i>
+              Download Resume
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

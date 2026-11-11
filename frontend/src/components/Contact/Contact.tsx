@@ -60,8 +60,8 @@ export default function Contact() {
     <section id="contact" className="contact-section" aria-label="Contact Information">
       <ScrollReveal direction="up">
         <div className="section-header">
-          <AnimatedText text="Get in Touch" el="h2" gradient />
-          <p>Open for internship opportunities, project inquiries, and collaborations</p>
+          <AnimatedText text="Get in Touch" el="h2" />
+          <p>Open for backend and full-stack engineering roles, technical discussions, and&nbsp;collaborations</p>
         </div>
       </ScrollReveal>
 
@@ -73,7 +73,7 @@ export default function Contact() {
               <div>
                 <h3 className="contact-card-title">Direct Contact</h3>
                 <p className="contact-card-text">
-                  Feel free to reach out directly via email or connect with me on social platforms.
+                  Feel free to reach out directly via email or connect with me on social&nbsp;platforms.
                 </p>
               </div>
 

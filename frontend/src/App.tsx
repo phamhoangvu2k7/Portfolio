@@ -35,24 +35,24 @@ export default function App() {
 
   return (
     <div onMouseMove={handleMouseMove} style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
+      {/* Accessibility Skip Link */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to main content
+      </a>
+
       {/* Custom Hardware-Accelerated Dual Cursor */}
       <CustomCursor />
 
       {/* Top Scroll Progress Line */}
       <motion.div className="scroll-progress-bar" style={{ scaleX }} />
 
-      {/* Vibrant Floating Ambient Gradient Orbs */}
-      <div className="ambient-blob blob-emerald" aria-hidden="true" />
-      <div className="ambient-blob blob-cyan" aria-hidden="true" />
-      <div className="ambient-blob blob-indigo" aria-hidden="true" />
-
-      {/* Background Grid Pattern */}
+      {/* Background Architectural Backdrop */}
       <div className="subtle-grid-bg" aria-hidden="true" />
 
-      {/* Interactive Mouse Cursor Spotlight Glow */}
+      {/* Interactive Mouse Cursor Spotlight Glow (GPU Accelerated) */}
       <motion.div
         className="cursor-spotlight"
-        style={{ left: springX, top: springY }}
+        style={{ x: springX, y: springY }}
         aria-hidden="true"
       />
 

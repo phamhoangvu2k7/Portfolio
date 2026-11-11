@@ -1,58 +1,77 @@
-/* Hallmark · Skills Component */
+/* ==========================================================================
+   SKILLS & TECHNICAL STACK MATRIX STYLING
+   ========================================================================== */
+
 .skills-section {
   padding: var(--space-16) var(--space-6);
   width: min(100%, var(--max-width-content));
   margin: 0 auto;
 }
 
-.skills-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-10);
-}
-
-.skills-group-title {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: var(--space-4);
+/* Category Filter Navigation */
+.skills-filter-nav {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: var(--space-2);
+  margin-bottom: var(--space-8);
 }
 
-.skills-group-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background-color: var(--color-paper-border);
+.filter-pill-btn {
+  background-color: var(--color-paper-subtle);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-pill-btn:hover {
+  color: var(--color-text);
+  border-color: var(--color-paper-border-hover);
+  background-color: var(--color-paper-card);
+}
+
+.filter-pill-btn.active {
+  background-color: var(--color-accent-subtle);
+  border-color: var(--color-accent-border);
+  color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Skills Grid */
+.skills-grid-container {
+  width: 100%;
 }
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: var(--space-4);
   align-items: stretch;
 }
 
 .skill-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: var(--space-3);
-  padding: var(--space-5) var(--space-3);
+  padding: var(--space-6) var(--space-4) var(--space-5);
   background-color: var(--color-paper-card);
   border: 1px solid var(--color-paper-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   transition: all var(--transition-fast);
   cursor: default;
   width: 100%;
   height: 100%;
-  min-height: 115px;
+  min-height: 135px;
   box-sizing: border-box;
 }
 
@@ -63,23 +82,62 @@
   box-shadow: var(--shadow-md);
 }
 
+.skill-tag-pill {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.02em;
+}
+
+.tag-production {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: var(--color-accent);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.tag-core-stack {
+  background-color: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.tag-edge-native {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.tag-academic {
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.tag-tooling {
+  background-color: rgba(148, 163, 184, 0.12);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
 .skill-icon {
-  font-size: 2rem;
+  font-size: 2.2rem;
   transition: transform var(--transition-fast);
+  color: var(--color-text);
 }
 
 .skill-card:hover .skill-icon {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .skill-label {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
-  text-align: center;
-}
-
-.skill-card:hover .skill-label {
   color: var(--color-text);
+  text-align: center;
 }
