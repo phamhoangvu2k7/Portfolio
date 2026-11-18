@@ -87,9 +87,9 @@
   top: 8px;
   right: 8px;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  padding: 2px 6px;
+  padding: 2px 7px;
   border-radius: var(--radius-pill);
   letter-spacing: 0.02em;
 }

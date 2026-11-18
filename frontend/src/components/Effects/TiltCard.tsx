@@ -81,6 +81,7 @@ export default function TiltCard({
         <motion.div
           className="tilt-card-glare"
           style={{
+            pointerEvents: 'none',
             opacity: isHovered ? glareOpacity : 0,
             background: useTransform(
               [glareX, glareY],
